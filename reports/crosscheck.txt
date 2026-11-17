@@ -1,0 +1,20 @@
+Product summary (PAN-OS 12.2) vs series datasheets.
+Differences usually mean the two documents were measured on different
+PAN-OS releases or one was updated before the other. The series datasheet
+is the source used in data/.
+
+371 values match, 13 differ.
+
+DIFF  PA-3540          ipsec_throughput_mbps              datasheet=     36000 (PAN-OS 12.2)  summary=     35000  [summary raw: 35 Gbps]
+DIFF  PA-1530-POE      new_sessions_per_sec               datasheet=    220000 (PAN-OS 12.2)  summary=    175000  [summary raw: 175K]
+DIFF  PA-1520-POE      new_sessions_per_sec               datasheet=    180000 (PAN-OS 12.2)  summary=    150000  [summary raw: 150K]
+DIFF  PA-1510-POE      new_sessions_per_sec               datasheet=    140000 (PAN-OS 12.2)  summary=    120000  [summary raw: 120K]
+DIFF  PA-1520-POE      concurrent_sessions                datasheet=   1495000 (PAN-OS 12.2)  summary=   1490000  [summary raw: 1.49M]
+DIFF  PA-1510-POE      concurrent_sessions                datasheet=   1095000 (PAN-OS 12.2)  summary=   1090000  [summary raw: 1.09M]
+DIFF  PA-520-5G        new_sessions_per_sec               datasheet=     25000 (PAN-OS 12.2)  summary=    148000  [summary raw: 148K]
+DIFF  PA-505           new_sessions_per_sec               datasheet=     10000 (PAN-OS 12.2)  summary=      9000  [summary raw: 9K]
+DIFF  PA-520-5G        concurrent_sessions                datasheet=    148000 (PAN-OS 12.2)  summary=     25000  [summary raw: 25K]
+DIFF  PA-505           concurrent_sessions                datasheet=     64000 (PAN-OS 12.2)  summary=     62000  [summary raw: 62K]
+DIFF  PA-54R-POE-D-5G  fw_throughput_appmix_mbps          datasheet=      3000 (PAN-OS 12.2)  summary=      2000  [summary raw: 2 Gbps]
+DIFF  PA-54R-POE       fw_throughput_appmix_mbps          datasheet=      3000 (PAN-OS 12.2)  summary=      2000  [summary raw: 2 Gbps]
+DIFF  PA-52R-5G        new_sessions_per_sec               datasheet=      2000 (PAN-OS 12.2)  summary=      2500  [summary raw: 2.5K]

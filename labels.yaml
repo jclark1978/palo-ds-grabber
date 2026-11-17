@@ -1,0 +1,81 @@
+# Maps Palo Alto datasheet labels to standard fields.
+#
+# Patterns are case-insensitive regexes matched against the label after
+# footnote markers are stripped. First match wins, top to bottom.
+#
+# parse types (performance):
+#   mbps   one throughput -> Mbps ("3.2 Gbps" -> 3200, "650 Mbps" -> 650,
+#          "1.5 Tbps" -> 1500000). A bare number (PA-50R prints "2.0") is
+#          read as Gbps and flagged with unit_assumed.
+#   count  one number ("1.4M" -> 1400000, "971K" -> 971000, "64,000")
+#   pair   "a/b" -> fields[0], fields[1] ("25/225" -> 25, 225)
+#   text   kept as printed
+#
+# Hardware labels map to a field name; the text is kept per model under
+# hardware.raw (original label) and the derived numbers (power, weight,
+# dimensions, rack units, BTU, interfaces, ...) are computed from it.
+#
+# Labels that match nothing are kept under "other" (performance) or
+# hardware.raw (hardware) and listed in reports/unmapped_labels.txt.
+
+performance:
+  fw_throughput_appmix_mbps:
+    parse: mbps
+    patterns: ['^Firewall throughput']
+  threat_prevention_throughput_mbps:
+    parse: mbps
+    patterns: ['^Threat prevention throughput']
+  ipsec_throughput_mbps:
+    parse: mbps
+    patterns: ['^IPsec VPN throughput']
+  concurrent_sessions:
+    parse: count
+    patterns: ['^(Max\.?|Maximum)\s+(concurrent\s+)?sessions', '^Concurrent sessions']
+  new_sessions_per_sec:
+    parse: count
+    patterns: ['^New sessions per second']
+  vsys:
+    parse: pair
+    fields: [vsys_base, vsys_max]
+    patterns: ['^Virtual systems']
+  compliance_rating:
+    parse: text
+    patterns: ['^Compliance rating']
+
+hardware:
+  interfaces:            ['^[1I]/O\b', 'Networking I/O$', '^(Cellular|RJ-45|SFP|VIMS\*?|Digital I/O)$']
+  management_io:         ['Management I/O']
+  storage:               ['^Storage Capacity']
+  tpm:                   ['^Trusted Platform Module']
+  poe:                   ['^Power over Ethernet']
+  power_consumption:     ['^Power Supply \(', '^Power Consumption', 'Power Consumption', '^Power Supply$']
+  heat_btu_h:            ['BTU']
+  power_supplies:        ['^Power Supplies']
+  input_voltage:         ['input voltage']
+  psu_output:            ['power (supply )?output']
+  max_current:           ['current']
+  mtbf:                  ['MTBF']
+  dimensions:            ['Dimensions']
+  weight:                ['^Weight']
+  safety:                ['^Safety']
+  emi:                   ['^EMI']
+  certifications:        ['^Certifications']
+  environment:           ['^Environment']
+  airflow:               ['^Airflow']
+
+# The same model is sometimes printed two ways. Left: as printed. Right: the
+# model id used in the output (matches the hardware table, ordering table and
+# product summary).
+model_aliases:
+  PA-54R-POE-5G: PA-54R-POE
+  PA-1510: PA-1510-POE       # product summary drops -POE
+  PA-1520: PA-1520-POE
+  PA-1530: PA-1530-POE
+
+# Columns that describe a single card, not a system (kept under per_card on
+# the system's record).
+card_column_re: 'DPC|NPC'
+
+exclude_files:
+  - vm-series-spec-sheet.pdf        # no spec tables; VM specs are web-only
+  - product-summary-specsheet.pdf   # used for reports/crosscheck.txt only

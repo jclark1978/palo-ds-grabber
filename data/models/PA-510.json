@@ -1,0 +1,140 @@
+{
+  "model": "PA-510",
+  "model_id": "PA-510",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-500 Series",
+  "form_factor": "appliance",
+  "source": {
+    "title": "PA-500 Series Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-500-series",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7",
+    "file": "pa-500-series.pdf",
+    "library_last_updated": "2026-08-20",
+    "sha256": "25952596a103951e03e484b28cda839a260b49c5855e38ea75cf04a7c443c357"
+  },
+  "test_conditions": {
+    "pan_os": "12.2",
+    "note": "Results were measured on PAN-OS 12.2."
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 1800,
+      "raw": "1.8 Gbps",
+      "label": "Firewall throughput (appmix)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled by using appmix transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 1200,
+      "raw": "1.2 Gbps",
+      "label": "Threat Prevention throughput (appmix)",
+      "notes": [
+        "†"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled using appmix transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 800,
+      "raw": "0.8 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "‡"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+      ],
+      "pan_os": "12.2"
+    },
+    "concurrent_sessions": {
+      "value": 98000,
+      "raw": "98K",
+      "label": "Max concurrent sessions",
+      "notes": [
+        "§"
+      ],
+      "test_conditions": [
+        "Maximum concurrent sessions are measured by using HTTP transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "new_sessions_per_sec": {
+      "value": 15000,
+      "raw": "15K",
+      "label": "New sessions per second",
+      "notes": [
+        "||"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override by using 1 byte HTTP transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "vsys_base": {
+      "value": null,
+      "raw": "—",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over the base quantity requires a separately purchased license."
+      ],
+      "pan_os": "12.2"
+    }
+  },
+  "hardware": {
+    "power_max_w": 34.3,
+    "heat_btu_h": 117,
+    "rack_units": null,
+    "desktop": true,
+    "dimensions_mm": {
+      "h": 44.2,
+      "w": 205.0,
+      "d": 224.3
+    },
+    "weight_kg": 2.27,
+    "interfaces": [
+      {
+        "type": "1G RJ45",
+        "count": 8
+      }
+    ],
+    "storage": "128 GB",
+    "raw": {
+      "I/O": "1G RJ45 (8)",
+      "Management I/O": "10/100/1000 out-of-band management port (1), USB port (2), RJ45 console port (1), and Micro USB console port (1)",
+      "Storage Capacity": "128 GB",
+      "Trusted Platform Module (TPM)": "Integrated with TPM for secure boot, hardware root of trust, and securing system secrets.",
+      "Power Consumption | Max Power Consumption": "34.3W",
+      "Max BTU/hr": "117",
+      "Input Voltage (Input Frequency)": "100–240 VAC (50-60 Hz)",
+      "Maximum Current Consumption": "2.5 A @ 12 VDC; *With one or more provided AC adapters.",
+      "Dimensions": "1.74” H x 8.83” D x 8.07” W",
+      "Weight (Standalone Device and As Shipped)": "5.0 lbs/7.8 lbs",
+      "Safety": "cTUVus and CB",
+      "EMI": "FCC Class B, CE Class B, and VCCI Class B",
+      "Certifications": "See our Compliance page.",
+      "Environment": "Operating temperature: 32°F to 104°F, 0°C to 40°C; Nonoperating temperature: -4°F to 158°F, -20°C to 70°C; Passive cooling: PA-501, PA-505, PA-510, PA-520, PA-520-5G, PA-540, PA-545-POE, PA-550, and PA-555-POE"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Firewall throughput is measured with App-ID and logging enabled by using appmix transactions.",
+    "†": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled using appmix transactions.",
+    "‡": "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+    "§": "Maximum concurrent sessions are measured by using HTTP transactions.",
+    "||": "New sessions per second is measured with application override by using 1 byte HTTP transactions.",
+    "#": "Adding virtual systems over the base quantity requires a separately purchased license."
+  },
+  "other": {}
+}

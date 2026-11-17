@@ -1,0 +1,166 @@
+{
+  "model": "PA-5540",
+  "model_id": "PA-5540",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-5500 Series",
+  "form_factor": "appliance",
+  "source": {
+    "title": "PA-5500 Series Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-5500-series",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series#page=6",
+    "file": "pa-5500-series.pdf",
+    "library_last_updated": "2026-09-21",
+    "sha256": "18acd12061844a0fc11689454859e8db5141af5ad068cee7ec22b09aba256caf"
+  },
+  "test_conditions": {
+    "pan_os": "12.2",
+    "note": "Results were measured on PAN-OS 12.2. Scale numbers and capacity limits vary across software releases and may change over time as new features and capabilities are introduced."
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 150000,
+      "raw": "150 Gbps",
+      "label": "Firewall throughput (appmix)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled, by using appmix transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 90000,
+      "raw": "90 Gbps",
+      "label": "Threat Prevention throughput (appmix)",
+      "notes": [
+        "†"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, by using appmix transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 80000,
+      "raw": "80 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "‡"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+      ],
+      "pan_os": "12.2"
+    },
+    "concurrent_sessions": {
+      "value": 39000000,
+      "raw": "39M",
+      "label": "Max concurrent sessions",
+      "notes": [
+        "§"
+      ],
+      "test_conditions": [
+        "Maximum concurrent sessions are measured by using HTTP transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "new_sessions_per_sec": {
+      "value": 1330000,
+      "raw": "1.33M",
+      "label": "New sessions per second",
+      "notes": [
+        "||"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override, by using 1-byte HTTP transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "vsys_base": {
+      "value": 25,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over the base quantity requires a separately purchased license. An active/active NGFW cluster supports a maximum of 25 virtual systems."
+      ],
+      "pan_os": "12.2"
+    },
+    "vsys_max": {
+      "value": 225,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over the base quantity requires a separately purchased license. An active/active NGFW cluster supports a maximum of 25 virtual systems."
+      ],
+      "pan_os": "12.2"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 2100.0,
+    "power_max_w": 3100.0,
+    "heat_btu_h": 7633,
+    "rack_units": 3,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 132.1,
+      "w": 439.4,
+      "d": 756.9
+    },
+    "weight_kg": 31.75,
+    "interfaces": [
+      {
+        "type": "10G/25G SFP28",
+        "count": 16
+      },
+      {
+        "type": "40G/100G QSFP28",
+        "count": 16
+      },
+      {
+        "type": "100G/400G QSFP-DD",
+        "count": 4
+      }
+    ],
+    "storage": "3.84 TB RAID1 SSD pair for system and log storage supported as cold swap",
+    "mtbf": "8.1 years",
+    "power_supplies": "2+2 redundant for 220 V and DC; 3+1 redundant for 110 V",
+    "raw": {
+      "I/O": "10G/25G SFP28 (16), 40G/100G QSFP28 (16), and 100G/400G QSFP-DD (4)",
+      "Management I/O": "Out-of-band management: 1G/10G SFP+ (2); Console: RJ-45 console port (1); Console: USB-C; Bootstrap: USB 3.2 Gen1 Type A; HSCI: 100G/400G QSFP-DD (2); Log: 10G SFP+ (2)",
+      "Storage Capacity": "3.84 TB RAID1 SSD pair for system and log storage supported as cold swap",
+      "Power Supply (Avg/Max Power Consumption)": "2,100 W/3,100 W",
+      "Max BTU/hr": "7,633",
+      "Power Supplies": "2+2 redundant for 220 V and DC; 3+1 redundant for 110 V",
+      "Input Voltage": "AC: 100–240 VAC (50–60 Hz); DC: -40 VDC to -60 VDC",
+      "Power Supply Output": "AC: 2,700 W/power supply with 220 V or 1,200 W/power supply with 110 V; DC: 2,200 W/power supply",
+      "Max Current Consumption": "AC: 20.3 A @ 110 VAC and 9.3 A @ 240 VAC; DC: 43.7 A @ 54 VDC",
+      "Max Inrush Current": "AC: 50 A @ 230 VAC and 50 A @ 120 VAC; DC: 25 A @ 54 VDC",
+      "Mean Time Between Failure (MTBF)": "8.1 years",
+      "Rack Mount Dimensions": "3U, 19\" standard rack (5.2\" H x 29.8\" D x 17.3\" W) with power supply inserted",
+      "Weight (Standalone Device/As Shipped)": "70 lbs/116 lbs (includes accessory kit, rack kit, packaging, and pallet).",
+      "Safety": "cTUVus, CB",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A",
+      "Certifications": "See our Compliance page.",
+      "Environment": "Operating temperature: 32°F to 122°F, 0°C to 50°C; Nonoperating temperature: -4°F to 158°F, -20°C to 70°C; Humidity tolerance: 10%–90%; Maximum altitude: 10,000 ft/3,048 m; Airflow: Front to back (port side to power supply side)"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Firewall throughput is measured with App-ID and logging enabled, by using appmix transactions.",
+    "†": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, by using appmix transactions.",
+    "‡": "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+    "§": "Maximum concurrent sessions are measured by using HTTP transactions.",
+    "||": "New sessions per second is measured with application override, by using 1-byte HTTP transactions.",
+    "#": "Adding virtual systems over the base quantity requires a separately purchased license. An active/active NGFW cluster supports a maximum of 25 virtual systems."
+  },
+  "other": {}
+}
