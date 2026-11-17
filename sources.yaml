@@ -1,0 +1,27 @@
+# Where pa_grabber.py looks for Palo Alto Networks firewall datasheets.
+#
+# crawl_pages: pages whose links to /resources/datasheets/<slug> are harvested.
+# extra_slugs: datasheet pages to always include (not linked from crawl_pages).
+# include / exclude: regex filters on the slug (case-insensitive). A slug must
+#   match an include pattern and no exclude pattern.
+
+crawl_pages:
+  - https://www.paloaltonetworks.com/resources/pa-series-next-generation-firewalls-hardware-architectures
+  - https://www.paloaltonetworks.com/network-security/next-generation-firewall-hardware
+  - https://www.paloaltonetworks.com/network-security/vm-series-virtual-next-generation-firewall
+  - https://www.paloaltonetworks.com/network-security/next-generation-firewall-software
+
+extra_slugs:
+  - product-summary-specsheet
+
+include:
+  - '^pa-'
+  - 'vm-series'
+  - 'cn-series'
+  - 'product-summary'
+  - 'firewall'
+
+exclude:
+  - 'panorama'
+  - 'privacy'
+  - 'service-description'
