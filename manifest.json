@@ -1,0 +1,132 @@
+{
+  "datasheets": {
+    "pa-1400-series.pdf": {
+      "bytes": 584030,
+      "downloaded": "2026-11-17T19:34:30+00:00",
+      "last_updated": "2026-01-27",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-1400-series",
+      "sha256": "32da835e121bd9a760b931a69f5d877cfb90d5d1d2334edc1f4b24a456774efc",
+      "title": "pa-1400-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1400-series"
+    },
+    "pa-1500-series.pdf": {
+      "bytes": 1585771,
+      "downloaded": "2026-11-17T19:34:34+00:00",
+      "last_updated": "2026-09-21",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-1500-series",
+      "sha256": "510cdbb1525385bd62b2a9b143646bcd5551623f3ed2896d2e04b70ac0df07d2",
+      "title": "pa-1500-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1500-series"
+    },
+    "pa-3400-series.pdf": {
+      "bytes": 430780,
+      "downloaded": "2026-11-17T19:34:29+00:00",
+      "last_updated": "2026-02-26",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-3400-series",
+      "sha256": "15d8cd06ba2ab1cfeba2421e5cc0a89467877fc1077caa9f15ff0eb0f583ef9c",
+      "title": "pa-3400-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3400-series"
+    },
+    "pa-3500-series.pdf": {
+      "bytes": 643935,
+      "downloaded": "2026-11-17T19:34:33+00:00",
+      "last_updated": "2026-10-29",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-3500-series",
+      "sha256": "444bdf5c97334b81a3af345d2c2bb6f46f8c1445035b267680fe6895f733444e",
+      "title": "pa-3500-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3500-series"
+    },
+    "pa-400-series.pdf": {
+      "bytes": 576543,
+      "downloaded": "2026-11-17T19:34:31+00:00",
+      "last_updated": "2026-02-25",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-400-series",
+      "sha256": "2f428bd95344279449c52993f4117a3cb0b9825964e4cba9a34371c4d312e37e",
+      "title": "pa-400-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series"
+    },
+    "pa-400r-series.pdf": {
+      "bytes": 898621,
+      "downloaded": "2026-11-17T19:34:33+00:00",
+      "last_updated": "2026-02-27",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-400r-series",
+      "sha256": "0a3c77acf68a6a5f80bd7b03bc4fea84f93f6d7ff69419edf7d962ce58082566",
+      "title": "pa-400r-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400r-series"
+    },
+    "pa-500-series.pdf": {
+      "bytes": 527147,
+      "downloaded": "2026-11-17T19:34:30+00:00",
+      "last_updated": "2026-08-20",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-500-series",
+      "sha256": "25952596a103951e03e484b28cda839a260b49c5855e38ea75cf04a7c443c357",
+      "title": "pa-500-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series"
+    },
+    "pa-50r-series.pdf": {
+      "bytes": 541183,
+      "downloaded": "2026-11-17T19:34:35+00:00",
+      "last_updated": "2026-09-17",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-50r-series",
+      "sha256": "6ff8718f46b9f36191d80f9cbc72d1ac562d20664ddcea986331e0334202e056",
+      "title": "pa-50r-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-50r-series"
+    },
+    "pa-5400-series.pdf": {
+      "bytes": 1545801,
+      "downloaded": "2026-11-17T19:34:28+00:00",
+      "last_updated": "2026-02-27",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-5400-series",
+      "sha256": "ec4e27b7def6cdea242d188f37008b12469b9bde87263bc698ceedf4da572fd0",
+      "title": "pa-5400-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5400-series"
+    },
+    "pa-5450-series.pdf": {
+      "bytes": 975257,
+      "downloaded": "2026-11-17T19:34:28+00:00",
+      "last_updated": "2026-04-14",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-5450-series",
+      "sha256": "82b2d016086eb7dd6eeb7bc5a38d4da5ccf62373c28df02492f440415e038db3",
+      "title": "pa-5450-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5450-series"
+    },
+    "pa-5500-series.pdf": {
+      "bytes": 2437115,
+      "downloaded": "2026-11-17T19:34:27+00:00",
+      "last_updated": "2026-09-21",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-5500-series",
+      "sha256": "18acd12061844a0fc11689454859e8db5141af5ad068cee7ec22b09aba256caf",
+      "title": "pa-5500-series",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series"
+    },
+    "pa-7500.pdf": {
+      "bytes": 1146744,
+      "downloaded": "2026-11-17T19:34:26+00:00",
+      "last_updated": "2026-03-12",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-7500",
+      "sha256": "8f82b8f258a83320903b204c8a3519bc47c5f485d60f97965b7436135c0e0621",
+      "title": "pa-7500",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7500"
+    },
+    "product-summary-specsheet.pdf": {
+      "bytes": 90517,
+      "downloaded": "2026-11-17T19:34:36+00:00",
+      "last_updated": "2026-10-22",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/product-summary-specsheet",
+      "sha256": "350e9ef7fbeebe329eb1712222cdcd39009ddd010fcca6b09a89feb016a06621",
+      "title": "product-summary-specsheet",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/product-summary-specsheet"
+    },
+    "vm-series-spec-sheet.pdf": {
+      "bytes": 143391,
+      "downloaded": "2026-11-17T19:34:36+00:00",
+      "last_updated": "2024-08-26",
+      "page_url": "https://www.paloaltonetworks.com/resources/datasheets/vm-series-spec-sheet",
+      "sha256": "0b0186ffc923babf8b39acfbe5d3fe708e0be6d76cf06d5131e7e56625735071",
+      "title": "vm-series-spec-sheet",
+      "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/vm-series-spec-sheet"
+    }
+  },
+  "generated": "2026-11-17T19:34:37+00:00",
+  "source": "https://www.paloaltonetworks.com/resources/datasheets"
+}
