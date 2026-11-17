@@ -1,0 +1,14 @@
+OK     pa-1400-series.pdf             perf_page=5  rows=6 mapped=100% models=2 PAN-OS=12.1
+OK     pa-1500-series.pdf             perf_page=6  rows=6 mapped=100% models=3 PAN-OS=12.2
+OK     pa-3400-series.pdf             perf_page=5  rows=6 mapped=100% models=4 PAN-OS=12.1
+OK     pa-3500-series.pdf             perf_page=6  rows=6 mapped=100% models=4 PAN-OS=12.2
+OK     pa-400-series.pdf              perf_page=6  rows=6 mapped=100% models=9 PAN-OS=12.1
+OK     pa-400r-series.pdf             perf_page=5  rows=7 mapped=100% models=5 PAN-OS=12.1
+OK     pa-500-series.pdf              perf_page=7  rows=6 mapped=100% models=10 PAN-OS=12.2
+OK     pa-50r-series.pdf              perf_page=5  rows=6 mapped=100% models=4 PAN-OS=12.2
+OK     pa-5400-series.pdf             perf_page=6  rows=6 mapped=100% models=5 PAN-OS=12.1
+OK     pa-5450-series.pdf             perf_page=6  rows=6 mapped=100% models=1 PAN-OS=12.1  cards=['Single PA-5400-DPC-A']
+OK     pa-5500-series.pdf             perf_page=6  rows=6 mapped=100% models=8 PAN-OS=12.2
+OK     pa-7500.pdf                    perf_page=5  rows=6 mapped=100% models=1 PAN-OS=11.1  cards=['PA-7500-DPC-A']
+SKIP   product-summary-specsheet.pdf (excluded in labels.yaml)
+SKIP   vm-series-spec-sheet.pdf (excluded in labels.yaml)

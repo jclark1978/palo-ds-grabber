@@ -1,0 +1,156 @@
+{
+  "model": "PA-3410",
+  "model_id": "PA-3410",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-3400 Series",
+  "form_factor": "appliance",
+  "source": {
+    "title": "PA-3400 Series Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3400-series",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-3400-series",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3400-series#page=5",
+    "file": "pa-3400-series.pdf",
+    "library_last_updated": "2026-02-26",
+    "sha256": "15d8cd06ba2ab1cfeba2421e5cc0a89467877fc1077caa9f15ff0eb0f583ef9c"
+  },
+  "test_conditions": {
+    "pan_os": "12.1",
+    "note": "Results were measured on PAN-OS 12.1."
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 14000,
+      "raw": "14 Gbps",
+      "label": "Firewall throughput (appmix)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled, by using appmix transactions."
+      ],
+      "pan_os": "12.1"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 7500,
+      "raw": "7.5 Gbps",
+      "label": "Threat Prevention throughput (appmix)",
+      "notes": [
+        "†"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, by using appmix transactions."
+      ],
+      "pan_os": "12.1"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 6600,
+      "raw": "6.6 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "‡"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+      ],
+      "pan_os": "12.1"
+    },
+    "concurrent_sessions": {
+      "value": 1400000,
+      "raw": "1.4M",
+      "label": "Max concurrent sessions",
+      "notes": [
+        "§"
+      ],
+      "test_conditions": [
+        "Max concurrent sessions are measured by using HTTP transactions."
+      ],
+      "pan_os": "12.1"
+    },
+    "new_sessions_per_sec": {
+      "value": 145000,
+      "raw": "145,000",
+      "label": "New sessions per second",
+      "notes": [
+        "||"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override, by using 1 byte HTTP transactions."
+      ],
+      "pan_os": "12.1"
+    },
+    "vsys_base": {
+      "value": 1,
+      "raw": "1/11",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license."
+      ],
+      "pan_os": "12.1"
+    },
+    "vsys_max": {
+      "value": 11,
+      "raw": "1/11",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license."
+      ],
+      "pan_os": "12.1"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 133.0,
+    "power_max_w": 190.0,
+    "rack_units": 1,
+    "desktop": false,
+    "weight_kg": 7.03,
+    "interfaces": [
+      {
+        "type": "1G/2.5G/5G/10G",
+        "count": 12
+      },
+      {
+        "type": "1G/10G SFP/SFP+",
+        "count": 10
+      },
+      {
+        "type": "25G SFP28",
+        "count": 4
+      }
+    ],
+    "storage": "480 GB SSD",
+    "mtbf": "22 years",
+    "raw": {
+      "I/O": "1G/2.5G/5G/10G (12), 1G/10G SFP/SFP+ (10), 25G SFP28 (4)",
+      "Management I/O": "100/1000 out-of-band management port (1); 100/1000 high availability (2), 10G SFP+ high availability (1); RJ-45 console port (1), Micro USB (1)",
+      "Storage Capacity": "480 GB SSD",
+      "Trusted Platform Module (TPM)": "Integrated with TPM for secure boot, hardware root of trust, and securing system secrets.",
+      "Power Supply (Avg/Max Power Consumption)": "Redundant 450-watt AC (133W/190W)",
+      "Input Voltage Frequency": "AC: 100–240 VAC (50–60Hz)",
+      "Max Current Consumption": "AC: 1.9 A @ 100 VAC, 0.8 A @ 240 VAC",
+      "Mean Time Between Failure (MTBF)": "22 years",
+      "Rack Mount Dimensions": "1U, 19” standard rack 14.15” x 17.15” x 1.70”",
+      "Weight (Standalone Device/As Shipped)": "15.5 lbs/25 lbs",
+      "Safety": "cTUVus, CB",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A",
+      "Certifications": "See paloaltonetworks.com/company/certifications.html",
+      "Environment": "Operating temperature: 32°F to 104°F, 0°C to 40°C; Nonoperating temperature: -4°F to 158°F, -20°C to 70°C; Humidity tolerance: 10% to 90%; Maximum altitude: 10,000 ft/3,048 m; Airflow: front to back"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Firewall throughput is measured with App-ID and logging enabled, by using appmix transactions.",
+    "†": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, by using appmix transactions.",
+    "‡": "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+    "§": "Max concurrent sessions are measured by using HTTP transactions.",
+    "||": "New sessions per second is measured with application override, by using 1 byte HTTP transactions.",
+    "#": "Adding virtual systems over base quantity requires a separately purchased license."
+  },
+  "other": {}
+}

@@ -1,0 +1,155 @@
+{
+  "model": "PA-410",
+  "model_id": "PA-410",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-400 Series",
+  "form_factor": "appliance",
+  "source": {
+    "title": "PA-400 Series Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-400-series",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6",
+    "file": "pa-400-series.pdf",
+    "library_last_updated": "2026-02-25",
+    "sha256": "2f428bd95344279449c52993f4117a3cb0b9825964e4cba9a34371c4d312e37e"
+  },
+  "test_conditions": {
+    "pan_os": "12.1",
+    "note": "Results were measured on PAN-OS 12.1. Adding Virtual Systems requires a separate license."
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 1400,
+      "raw": "1.4 Gbps",
+      "label": "Firewall throughput (appmix)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled, using appmix transactions."
+      ],
+      "pan_os": "12.1"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 800,
+      "raw": "0.8 Gbps",
+      "label": "Threat Prevention throughput (appmix)",
+      "notes": [
+        "†"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, DNS Security, file blocking, and logging enabled, using appmix transactions."
+      ],
+      "pan_os": "12.1"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 500,
+      "raw": "0.5 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "‡"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+      ],
+      "pan_os": "12.1"
+    },
+    "concurrent_sessions": {
+      "value": 64000,
+      "raw": "64,000",
+      "label": "Max concurrent sessions",
+      "notes": [
+        "§"
+      ],
+      "test_conditions": [
+        "Max concurrent sessions are measured by using HTTP transactions."
+      ],
+      "pan_os": "12.1"
+    },
+    "new_sessions_per_sec": {
+      "value": 11000,
+      "raw": "11,000",
+      "label": "New sessions per second",
+      "notes": [
+        "||"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override, using 1 byte HTTP transactions."
+      ],
+      "pan_os": "12.1"
+    },
+    "vsys_base": {
+      "value": 1,
+      "raw": "1/1",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license and a minimum of PAN-OS 11.0 and 11.1 for PA-415-5G and PA-455. PA-455-5G needs 11.2 for VSYS."
+      ],
+      "pan_os": "12.1"
+    },
+    "vsys_max": {
+      "value": 1,
+      "raw": "1/1",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license and a minimum of PAN-OS 11.0 and 11.1 for PA-415-5G and PA-455. PA-455-5G needs 11.2 for VSYS."
+      ],
+      "pan_os": "12.1"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 17.0,
+    "power_max_w": 23.0,
+    "heat_btu_h": 78,
+    "rack_units": null,
+    "desktop": true,
+    "dimensions_mm": {
+      "h": 41.4,
+      "w": 242.1,
+      "d": 163.1
+    },
+    "weight_kg": 1.41,
+    "interfaces": [
+      {
+        "type": "1G RJ45",
+        "count": 7
+      }
+    ],
+    "storage": "64 GB eMMC",
+    "raw": {
+      "I/O": "1G RJ45 (7)",
+      "Management I/O": "10/100/1000 out-of-band management port (1), RJ45 console port (1), USB port (2)",
+      "Storage Capacity": "64 GB eMMC",
+      "Trusted Platform Module (TPM)": "Integrated with TPM for secure boot, hardware root of trust, and securing system secrets.",
+      "Power Supply | Average Power Consumption": "17 W",
+      "Power Supply | Max Power Consumption": "23 W",
+      "Max BTU/hr": "78",
+      "Input Voltage (Input Frequency)": "100-240 VAC (50–60 Hz)",
+      "Max Current Consumption": "1.5 A @ 12 VDC",
+      "Max Inrush Current": "2.1 A",
+      "Dimensions": "1.63\" H x 6.42\" D x 9.53\" W",
+      "Weight (Standalone Device/As Shipped)": "3.1 lbs/5.9 lbs",
+      "Safety": "cTUVus, CB",
+      "EMI": "FCC Class B, CE Class B, VCCI Class B",
+      "Certifications": "See paloaltonetworks.com/legal-notices/trust-center/compliance",
+      "Environment": "Operating temperature: 32°F to 104°F, 0°C to 40°C; Nonoperating temperature: -4°F to 158°F, -20°C to 70°C; Passive cooling"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Firewall throughput is measured with App-ID and logging enabled, using appmix transactions.",
+    "†": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, DNS Security, file blocking, and logging enabled, using appmix transactions.",
+    "‡": "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+    "§": "Max concurrent sessions are measured by using HTTP transactions.",
+    "||": "New sessions per second is measured with application override, using 1 byte HTTP transactions.",
+    "#": "Adding virtual systems over base quantity requires a separately purchased license and a minimum of PAN-OS 11.0 and 11.1 for PA-415-5G and PA-455. PA-455-5G needs 11.2 for VSYS."
+  },
+  "other": {}
+}

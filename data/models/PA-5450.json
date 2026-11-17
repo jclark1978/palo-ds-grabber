@@ -1,0 +1,265 @@
+{
+  "model": "PA-5450",
+  "model_id": "PA-5450",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-5450",
+  "form_factor": "appliance",
+  "source": {
+    "title": "PA-5450 Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5450-series",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-5450-series",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5450-series#page=6",
+    "file": "pa-5450-series.pdf",
+    "library_last_updated": "2026-04-14",
+    "sha256": "82b2d016086eb7dd6eeb7bc5a38d4da5ccf62373c28df02492f440415e038db3"
+  },
+  "test_conditions": {
+    "pan_os": "12.1",
+    "note": "Results were measured on PAN-OS 12.1.",
+    "column_notes": [
+      "All tests performed with 2 Networking Cards + 4 Data Processing Cards populated, unless otherwise noted."
+    ]
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 200000,
+      "raw": "200 Gbps",
+      "label": "Firewall throughput (appmix)",
+      "notes": [
+        "†",
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled, by using appmix transactions.",
+        "All tests performed with 2 Networking Cards + 4 Data Processing Cards populated, unless otherwise noted."
+      ],
+      "pan_os": "12.1"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 189000,
+      "raw": "189 Gbps",
+      "label": "Threat Prevention throughput (appmix)",
+      "notes": [
+        "‡",
+        "*"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, by using appmix transactions.",
+        "All tests performed with 2 Networking Cards + 4 Data Processing Cards populated, unless otherwise noted."
+      ],
+      "pan_os": "12.1"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 85000,
+      "raw": "85 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "§",
+        "||",
+        "*"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+        "This test performed with 1 Networking Card + 5 Data Processing Cards populated.",
+        "All tests performed with 2 Networking Cards + 4 Data Processing Cards populated, unless otherwise noted."
+      ],
+      "pan_os": "12.1"
+    },
+    "concurrent_sessions": {
+      "value": 100000000,
+      "raw": "100M",
+      "label": "Max concurrent sessions",
+      "notes": [
+        "#",
+        "||",
+        "*"
+      ],
+      "test_conditions": [
+        "Max concurrent sessions are measured by using HTTP transactions.",
+        "This test performed with 1 Networking Card + 5 Data Processing Cards populated.",
+        "All tests performed with 2 Networking Cards + 4 Data Processing Cards populated, unless otherwise noted."
+      ],
+      "pan_os": "12.1"
+    },
+    "new_sessions_per_sec": {
+      "value": 3600000,
+      "raw": "3.6M",
+      "label": "New sessions per second",
+      "notes": [
+        "**",
+        "||",
+        "*"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override, by using 1 byte HTTP transactions.",
+        "This test performed with 1 Networking Card + 5 Data Processing Cards populated.",
+        "All tests performed with 2 Networking Cards + 4 Data Processing Cards populated, unless otherwise noted."
+      ],
+      "pan_os": "12.1"
+    },
+    "vsys_base": {
+      "value": 25,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "††",
+        "*"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license.",
+        "All tests performed with 2 Networking Cards + 4 Data Processing Cards populated, unless otherwise noted."
+      ],
+      "pan_os": "12.1"
+    },
+    "vsys_max": {
+      "value": 225,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "††",
+        "*"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license.",
+        "All tests performed with 2 Networking Cards + 4 Data Processing Cards populated, unless otherwise noted."
+      ],
+      "pan_os": "12.1"
+    }
+  },
+  "hardware": {
+    "heat_btu_h": 8828,
+    "rack_units": 5,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 222.2,
+      "w": 441.5,
+      "d": 768.3
+    },
+    "interfaces": [
+      {
+        "type": "100/1000/10G Cu",
+        "count": 4
+      },
+      {
+        "type": "1G/10G SFP/SFP+",
+        "count": 12
+      },
+      {
+        "type": "40G/100G QSFP28",
+        "count": 2
+      }
+    ],
+    "storage": "480 GB SSD, RAID1, system storage; 4 TB SSD, log storage (optional)",
+    "mtbf": "Configuration dependent; contact your Palo Alto Networks representative for MTBF details.",
+    "power_supplies": "2/4",
+    "raw": {
+      "PA-5400-NC-A Networking I/O": "100/1000/10G Cu (4), 1G/10G SFP/SFP+ (12), 40G/100G QSFP28 (2); minimum 1 NC and maximum 2 NCs per system; 2 NCs require 2 or more DPCs installed",
+      "PAN-PA-5400-MPC-A Management I/O": "SFP/SFP+ MGT (2), SFP/SFP+ HA1 (2), HSCI HA2/HA3 QSFP+/QSFP28 (2), RJ45 serial console (1), Micro USB serial console (1)",
+      "Storage Capacity": "480 GB SSD, RAID1, system storage; 4 TB SSD, log storage (optional)",
+      "Trusted Platform Module (TPM)": "Integrated with TPM for secure boot, hardware root of trust, and securing system secrets.",
+      "Max BTU/hr": "8,828",
+      "Power Supplies (Base/Max)": "2/4",
+      "AC Input Voltage (Input Frequency)": "100–120 VAC & 200–240 VAC (50–60 Hz)",
+      "AC Power Supply Output": "2,200 watts/power supply",
+      "Max Current Consumption": "AC: 100–120 VAC, ~14 A max. per input 200–240 VAC, ~12.5 A max. per input; DC: 48–60 VDC, 52 A max. per input",
+      "Max Inrush Current": "AC: 35 A @ 230 VAC, 35 A @ 120 VAC; DC: 50 A @ 72 VDC",
+      "Rack Mount (Dimensions)": "5U, 19\" standard rack (8.75\" H x 30.25\" D x 17.38\" W)",
+      "Maximum Time Between Failure (MTBF)": "Configuration dependent; contact your Palo Alto Networks representative for MTBF details.",
+      "Safety": "cTUVus, CB",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A, KCC Class A, BSMI Class A",
+      "Certifications": "See paloaltonetworks.com/company/certifications.html",
+      "Environment": "Operating temperature: 32°F to 122°F, 0°C to 50°C; Nonoperating temperature: -4°F to 158°F, -20°C to 70°C"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "All tests performed with 2 Networking Cards + 4 Data Processing Cards populated, unless otherwise noted.",
+    "†": "Firewall throughput is measured with App-ID and logging enabled, by using appmix transactions.",
+    "‡": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, by using appmix transactions.",
+    "§": "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+    "||": "This test performed with 1 Networking Card + 5 Data Processing Cards populated.",
+    "#": "Max concurrent sessions are measured by using HTTP transactions.",
+    "**": "New sessions per second is measured with application override, by using 1 byte HTTP transactions.",
+    "††": "Adding virtual systems over base quantity requires a separately purchased license."
+  },
+  "other": {},
+  "printed_as": "PA-5450 Configured System",
+  "per_card": {
+    "card": "PA-5400-DPC-A",
+    "specs": {
+      "fw_throughput_appmix_mbps": {
+        "value": 75000,
+        "raw": "75 Gbps",
+        "label": "Firewall throughput (appmix)",
+        "notes": [
+          "†"
+        ],
+        "test_conditions": [
+          "Firewall throughput is measured with App-ID and logging enabled, by using appmix transactions."
+        ],
+        "pan_os": "12.1"
+      },
+      "threat_prevention_throughput_mbps": {
+        "value": 55000,
+        "raw": "55 Gbps",
+        "label": "Threat Prevention throughput (appmix)",
+        "notes": [
+          "‡"
+        ],
+        "test_conditions": [
+          "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, by using appmix transactions."
+        ],
+        "pan_os": "12.1"
+      },
+      "ipsec_throughput_mbps": {
+        "value": 17000,
+        "raw": "17 Gbps",
+        "label": "IPsec VPN throughput",
+        "notes": [
+          "§"
+        ],
+        "test_conditions": [
+          "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+        ],
+        "pan_os": "12.1"
+      },
+      "concurrent_sessions": {
+        "value": 20000000,
+        "raw": "20M",
+        "label": "Max concurrent sessions",
+        "notes": [
+          "#"
+        ],
+        "test_conditions": [
+          "Max concurrent sessions are measured by using HTTP transactions."
+        ],
+        "pan_os": "12.1"
+      },
+      "new_sessions_per_sec": {
+        "value": 725000,
+        "raw": "725,000",
+        "label": "New sessions per second",
+        "notes": [
+          "**"
+        ],
+        "test_conditions": [
+          "New sessions per second is measured with application override, by using 1 byte HTTP transactions."
+        ],
+        "pan_os": "12.1"
+      },
+      "vsys_base": {
+        "value": null,
+        "raw": "—",
+        "label": "Virtual systems (base/max)",
+        "notes": [
+          "††"
+        ],
+        "test_conditions": [
+          "Adding virtual systems over base quantity requires a separately purchased license."
+        ],
+        "pan_os": "12.1"
+      }
+    }
+  }
+}

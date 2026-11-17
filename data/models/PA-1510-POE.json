@@ -1,0 +1,170 @@
+{
+  "model": "PA-1510-POE",
+  "model_id": "PA-1510-POE",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-1500 Series",
+  "form_factor": "appliance",
+  "source": {
+    "title": "PA-1500 Series Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1500-series",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-1500-series",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1500-series#page=6",
+    "file": "pa-1500-series.pdf",
+    "library_last_updated": "2026-09-21",
+    "sha256": "510cdbb1525385bd62b2a9b143646bcd5551623f3ed2896d2e04b70ac0df07d2"
+  },
+  "test_conditions": {
+    "pan_os": "12.2",
+    "note": "Results were measured on PAN-OS 12.2."
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 15000,
+      "raw": "15 Gbps",
+      "label": "Firewall throughput (appmix)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled, using appmix transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 9000,
+      "raw": "9 Gbps",
+      "label": "Threat Prevention throughput (appmix)",
+      "notes": [
+        "†"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled by using appmix transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 7000,
+      "raw": "7 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "‡"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+      ],
+      "pan_os": "12.2"
+    },
+    "concurrent_sessions": {
+      "value": 1095000,
+      "raw": "1,095,000",
+      "label": "Max. concurrent sessions",
+      "notes": [
+        "§"
+      ],
+      "test_conditions": [
+        "Maximum concurrent sessions are measured using HTTP transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "new_sessions_per_sec": {
+      "value": 140000,
+      "raw": "140,000",
+      "label": "New sessions per second",
+      "notes": [
+        "||"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override, using 1 byte HTTP transactions."
+      ],
+      "pan_os": "12.2"
+    },
+    "vsys_base": {
+      "value": 1,
+      "raw": "1/6",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over the base quantity requires a separately purchased license."
+      ],
+      "pan_os": "12.2"
+    },
+    "vsys_max": {
+      "value": 6,
+      "raw": "1/6",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over the base quantity requires a separately purchased license."
+      ],
+      "pan_os": "12.2"
+    }
+  },
+  "hardware": {
+    "power_max_w": 845.0,
+    "heat_btu_h": 1057.8,
+    "rack_units": 1,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 43.2,
+      "w": 440.4,
+      "d": 499.9
+    },
+    "weight_kg": 8.98,
+    "interfaces": [
+      {
+        "type": "10/100/1000 Cu",
+        "count": 12
+      },
+      {
+        "type": "1G/2.5G/5G Cu",
+        "count": 8
+      },
+      {
+        "type": "1G SFP",
+        "count": 4
+      },
+      {
+        "type": "1G/10G SFP+",
+        "count": 8
+      }
+    ],
+    "storage": "480 GB",
+    "mtbf": "34 years",
+    "power_supplies": "AC 1200W power supply (1); optional for purchase 2nd AC 1200W power supply; Optional FRUs: AC 1200W power supply; DC 1200W power supply; Note: In a two-power-supply setup, power supplies must be the same type: AC/AC or DC/DC.",
+    "raw": {
+      "I/O": "10/100/1000 Cu (12), 1G/2.5G/5G Cu (8), 1G SFP (4), 1G/10G SFP+ (8)",
+      "Power over Ethernet (PoE)": "Available on ports 5–20:; 485W total, 90W max per port",
+      "Management I/O": "Out-of-band management: 10/100/1000 Cu (1); Console: RJ-45 console port (1); Console: USB-C (1); Bootstrap: USB 3.2 Gen1 Type A (1); HA: 10/100/1000 Cu (2); HSCI: PA-1510-POE: 10G SFP+ (1), PA-1520-POE, PA-1530-POE: 25G SFP28 (1)",
+      "Storage Capacity": "480 GB",
+      "Power Supply (Avg/Max Power Consumption)": "845W (max power with 485W PoE)",
+      "Max BTU/hr": "1057.8 BTU/hr (max system power dissipation of 310W)",
+      "Power Supplies": "AC 1200W power supply (1); optional for purchase 2nd AC 1200W power supply; Optional FRUs: AC 1200W power supply; DC 1200W power supply; Note: In a two-power-supply setup, power supplies must be the same type: AC/AC or DC/DC.",
+      "Input Voltage": "AC: 100–240 VAC (50–60 Hz); DC: -48 VDC to -60 VDC",
+      "Power Supply Output": "AC: 1,200W/power supply with 220V or 1,200W/power supply with 110V; DC: 1,200W/power supply with 48V",
+      "Max Current Consumption": "7.7 A @ 110 VAC and 3.5 A @ 240 VAC; 17.6 A @ 48 VDC (with 485W PoE)",
+      "Max Inrush Current": "AC: 30 A @ 230 VAC and 50 A @ 120 VAC; DC: 30 A @ 48 VDC",
+      "Mean Time Between Failure (MTBF) 25C": "34 years",
+      "Rack Mount Dimensions": "1U, 19\" standard rack (1.70\" H x 19.68\" D x 17.34\" W) with power supply inserted",
+      "Weight (Standalone Device and As Shipped)": "19.8 lbs (with one power supply inserted); 22 lbs/23 lbs (includes accessory kit, rack kit, and packaging)",
+      "Safety": "cMETus and CB",
+      "EMI": "FCC Class A, CE Class A, and VCCI Class A",
+      "Certifications": "See the Compliance page.",
+      "Environment": "Operating temperature: 32°F to 104°F, 0°C to 40°C; Nonoperating temperature: -4°F to 158°F, -20°C to 70°C; Humidity tolerance: 10%–90%; Maximum altitude: 10,000 ft/3,048 m; Airflow: Front to back (port side to power supply side)"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Firewall throughput is measured with App-ID and logging enabled, using appmix transactions.",
+    "†": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled by using appmix transactions.",
+    "‡": "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+    "§": "Maximum concurrent sessions are measured using HTTP transactions.",
+    "||": "New sessions per second is measured with application override, using 1 byte HTTP transactions.",
+    "#": "Adding virtual systems over the base quantity requires a separately purchased license."
+  },
+  "other": {}
+}

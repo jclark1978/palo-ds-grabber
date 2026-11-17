@@ -1,0 +1,255 @@
+{
+  "model": "PA-7500",
+  "model_id": "PA-7500",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-7500",
+  "form_factor": "appliance",
+  "source": {
+    "title": "PA-7500 Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7500",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-7500",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7500#page=5",
+    "file": "pa-7500.pdf",
+    "library_last_updated": "2026-03-12",
+    "sha256": "8f82b8f258a83320903b204c8a3519bc47c5f485d60f97965b7436135c0e0621"
+  },
+  "test_conditions": {
+    "pan_os": "11.1",
+    "note": "Results were measured on PAN-OS 11.1.",
+    "column_notes": [
+      "Results in this column were derived from a configuration using six PA-7500-DPC-A cards and two PA-7500-NPC-A cards."
+    ]
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 1500000,
+      "raw": "1,500 Gbps",
+      "label": "Firewall throughput (appmix)",
+      "notes": [
+        "†",
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled, utilizing appmix transactions.",
+        "Results in this column were derived from a configuration using six PA-7500-DPC-A cards and two PA-7500-NPC-A cards."
+      ],
+      "pan_os": "11.1"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 1440000,
+      "raw": "1,440 Gbps",
+      "label": "Threat Prevention throughput (appmix)",
+      "notes": [
+        "‡",
+        "*"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, DNS Security, file blocking, and logging enabled, utilizing appmix transactions.",
+        "Results in this column were derived from a configuration using six PA-7500-DPC-A cards and two PA-7500-NPC-A cards."
+      ],
+      "pan_os": "11.1"
+    },
+    "concurrent_sessions": {
+      "value": 440000000,
+      "raw": "440M",
+      "label": "Max concurrent sessions",
+      "notes": [
+        "§",
+        "*"
+      ],
+      "test_conditions": [
+        "Max concurrent sessions are measured utilizing HTTP transactions.",
+        "Results in this column were derived from a configuration using six PA-7500-DPC-A cards and two PA-7500-NPC-A cards."
+      ],
+      "pan_os": "11.1"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 407000,
+      "raw": "407 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "||",
+        "*"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64KB HTTP transactions and logging enabled.",
+        "Results in this column were derived from a configuration using six PA-7500-DPC-A cards and two PA-7500-NPC-A cards."
+      ],
+      "pan_os": "11.1"
+    },
+    "new_sessions_per_sec": {
+      "value": 7200000,
+      "raw": "7.2M",
+      "label": "New sessions per second",
+      "notes": [
+        "#",
+        "*"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions.",
+        "Results in this column were derived from a configuration using six PA-7500-DPC-A cards and two PA-7500-NPC-A cards."
+      ],
+      "pan_os": "11.1"
+    },
+    "vsys_base": {
+      "value": 25,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "**",
+        "*"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license. NGFW Cluster A/A supports a maximum of 25 Virtual Systems.",
+        "Results in this column were derived from a configuration using six PA-7500-DPC-A cards and two PA-7500-NPC-A cards."
+      ],
+      "pan_os": "11.1"
+    },
+    "vsys_max": {
+      "value": 225,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "**",
+        "*"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license. NGFW Cluster A/A supports a maximum of 25 Virtual Systems.",
+        "Results in this column were derived from a configuration using six PA-7500-DPC-A cards and two PA-7500-NPC-A cards."
+      ],
+      "pan_os": "11.1"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 8200.0,
+    "power_max_w": 10000.0,
+    "heat_btu_h": 31142,
+    "rack_units": 14,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 619.8,
+      "w": 442.0,
+      "d": 787.4
+    },
+    "interfaces": [
+      {
+        "type": "QSFP-DD",
+        "count": 8
+      },
+      {
+        "type": "SFP-DD —100 Gbps/25 Gbps/10 Gbps ports",
+        "count": 12
+      }
+    ],
+    "power_supplies": "N+M Redundancy (up to 10 power supplies with load sharing)",
+    "raw": {
+      "I/O (each PA-7500-NPC-A)": "QSFP-DD (8)—with support for 400 Gbps/100 Gbps/40 Gbps and hardware support for breakout mode; SFP-DD (12)—100 Gbps/25 Gbps/10 Gbps ports",
+      "Management I/O (each PA-7500-MPC-A)": "QSFP28 logging port (2)—100 Gbps/40 Gbps; QSFP-DD high availability port (2)—400 Gbps/100 Gbps; SFP28 management port (2) with support for 1 Gbps/10 Gbps/25 Gbps; Combo RJ45 console port (1), Micro USB console port (1) USB (1)",
+      "Trusted Platform Module (TPM)": "Integrated with TPM for secure boot, hardware root of trust, and securing system secrets.",
+      "BTU": "Configuration: SFCs (2), NPCs (2), DPCs (6), MPC (1); Max BTU 31142 (total power—fan power in BTU units)",
+      "Power Supply (Idle/Typical/Max Power Consumption)": "Configuration: SFCs (2), NPCs (2), DPCs (6), MPC (1); 6.3 KW/8.2 KW/10 KW @ 25C @ sea level; 7.3 KW/9.2 KW/11.5 KW @ 40C @ 2,000 ft altitude",
+      "Power Supplies (Base/Max)": "N+M Redundancy (up to 10 power supplies with load sharing)",
+      "AC input voltage": "100–240 VAC (50–60 Hz)",
+      "AC Rated input current": "20 A",
+      "AC power supply output": "3600 @ High Line (180V, 200/240V, 305V) per power supply; 1800 @ Low Line (90V, 110/120V, 132V) per power supply",
+      "DC input voltage": "-48V DC",
+      "DC Rated input current": "83A @ -48V DC",
+      "DC power output": "3600W/power supply",
+      "Max current/power supply": "20A AC Power Supply, 83A DC Power Supply",
+      "Rack Mount Dimensions": "14U 24.4\" H x 31.0\" D x 17.4\" W",
+      "Safety": "cMETus, CB, Noise Level Compliant with NEBS",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A",
+      "Certifications": "See our Compliance page .",
+      "Environment": "Operating temperature: 32°F–104°F, 0°C–40°C; Humidity tolerance: 5% to 90% noncondensing; Airflow: front to back"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Results in this column were derived from a configuration using six PA-7500-DPC-A cards and two PA-7500-NPC-A cards.",
+    "†": "Firewall throughput is measured with App-ID and logging enabled, utilizing appmix transactions.",
+    "‡": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, DNS Security, file blocking, and logging enabled, utilizing appmix transactions.",
+    "§": "Max concurrent sessions are measured utilizing HTTP transactions.",
+    "||": "IPsec VPN throughput is measured with 64KB HTTP transactions and logging enabled.",
+    "#": "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions.",
+    "**": "Adding virtual systems over base quantity requires a separately purchased license. NGFW Cluster A/A supports a maximum of 25 Virtual Systems."
+  },
+  "other": {},
+  "per_card": {
+    "card": "PA-7500-DPC-A",
+    "specs": {
+      "fw_throughput_appmix_mbps": {
+        "value": 310000,
+        "raw": "310 Gbps",
+        "label": "Firewall throughput (appmix)",
+        "notes": [
+          "†"
+        ],
+        "test_conditions": [
+          "Firewall throughput is measured with App-ID and logging enabled, utilizing appmix transactions."
+        ],
+        "pan_os": "11.1"
+      },
+      "threat_prevention_throughput_mbps": {
+        "value": 250000,
+        "raw": "250 Gbps",
+        "label": "Threat Prevention throughput (appmix)",
+        "notes": [
+          "‡"
+        ],
+        "test_conditions": [
+          "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, DNS Security, file blocking, and logging enabled, utilizing appmix transactions."
+        ],
+        "pan_os": "11.1"
+      },
+      "concurrent_sessions": {
+        "value": 73000000,
+        "raw": "73M",
+        "label": "Max concurrent sessions",
+        "notes": [
+          "§"
+        ],
+        "test_conditions": [
+          "Max concurrent sessions are measured utilizing HTTP transactions."
+        ],
+        "pan_os": "11.1"
+      },
+      "ipsec_throughput_mbps": {
+        "value": 67000,
+        "raw": "67 Gbps",
+        "label": "IPsec VPN throughput",
+        "notes": [
+          "||"
+        ],
+        "test_conditions": [
+          "IPsec VPN throughput is measured with 64KB HTTP transactions and logging enabled."
+        ],
+        "pan_os": "11.1"
+      },
+      "new_sessions_per_sec": {
+        "value": 1200000,
+        "raw": "1.2M",
+        "label": "New sessions per second",
+        "notes": [
+          "#"
+        ],
+        "test_conditions": [
+          "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions."
+        ],
+        "pan_os": "11.1"
+      },
+      "vsys_base": {
+        "value": null,
+        "raw": "—",
+        "label": "Virtual systems (base/max)",
+        "notes": [
+          "**"
+        ],
+        "test_conditions": [
+          "Adding virtual systems over base quantity requires a separately purchased license. NGFW Cluster A/A supports a maximum of 25 Virtual Systems."
+        ],
+        "pan_os": "11.1"
+      }
+    }
+  }
+}

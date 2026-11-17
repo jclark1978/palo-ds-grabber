@@ -9,7 +9,6 @@ crawl_pages:
   - https://www.paloaltonetworks.com/resources/pa-series-next-generation-firewalls-hardware-architectures
   - https://www.paloaltonetworks.com/network-security/next-generation-firewall-hardware
   - https://www.paloaltonetworks.com/network-security/vm-series-virtual-next-generation-firewall
-  - https://www.paloaltonetworks.com/network-security/next-generation-firewall-software
 
 extra_slugs:
   - product-summary-specsheet
