@@ -3,7 +3,10 @@
 
 Finds datasheet pages (/resources/datasheets/<slug>) linked from the pages in
 sources.yaml, reads each page's published date, downloads new or changed PDFs,
-and records everything in manifest.json.
+and records everything in manifest.json. Legacy (end-of-sale) models are found
+through Palo Alto's Hardware End-of-Life Dates page, which links current-style
+datasheet pages and, for the oldest models, direct PDF files (extra_pdfs adds
+old PDFs no page links to any more).
 
 Usage:
     python pa_grabber.py --list-only     # show what would be downloaded
@@ -55,8 +58,15 @@ def wanted(slug: str, cfg: dict) -> bool:
     return any(p.search(slug) for p in inc) and not any(p.search(slug) for p in exc)
 
 
-def discover(s: requests.Session, cfg: dict) -> list[str]:
+def pdf_wanted(name: str, cfg: dict) -> bool:
+    """Filter direct PDF links by file name with the same include/exclude rules."""
+    return wanted(name, cfg)
+
+
+def discover(s: requests.Session, cfg: dict) -> tuple[list[str], list[dict]]:
+    """-> (datasheet page slugs, direct PDFs [{name, url}])."""
     slugs: list[str] = []
+    pdfs: dict[str, str] = {}
     for url in cfg.get("crawl_pages", []):
         try:
             r = s.get(url, timeout=30)
@@ -68,14 +78,23 @@ def discover(s: requests.Session, cfg: dict) -> list[str]:
             continue
         found = [m.group(1).lower() for m in SLUG_RE.finditer(r.text)]
         found = [f for f in found if wanted(f, cfg)]
-        print(f"  {url}: {len(set(found))} datasheet links", flush=True)
+        direct = []
+        for m in DAM_RE.finditer(r.text):
+            pdf_url = urljoin(BASE, m.group(0))
+            name = Path(urlparse(pdf_url).path).name.lower()
+            if pdf_wanted(Path(name).stem, cfg) and name not in pdfs:
+                pdfs[name] = pdf_url
+                direct.append(name)
+        print(f"  {url}: {len(set(found))} datasheet pages, {len(direct)} direct PDFs", flush=True)
         slugs += found
     slugs += [x.lower() for x in cfg.get("extra_slugs", [])]
+    for e in cfg.get("extra_pdfs", []) or []:
+        pdfs.setdefault(e["name"].lower(), e["url"])
     out = []
     for x in slugs:  # keep order, drop duplicates
         if x not in out:
             out.append(x)
-    return out
+    return out, [{"name": n, "url": u} for n, u in pdfs.items()]
 
 
 def page_info(s: requests.Session, slug: str) -> dict:
@@ -131,7 +150,7 @@ def load_manifest(path: Path) -> dict:
     return {"generated": None, "source": BASE + "/resources/datasheets", "datasheets": {}}
 
 
-def sync(s, infos, out_dir: Path, manifest_path: Path, force=False) -> dict:
+def sync(s, infos, out_dir: Path, manifest_path: Path, force=False, direct=None) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     archive = out_dir / "_archive"
     manifest = load_manifest(manifest_path)
@@ -181,6 +200,40 @@ def sync(s, infos, out_dir: Path, manifest_path: Path, force=False) -> dict:
         }
         time.sleep(0.5)  # be polite
 
+    for d in direct or []:
+        name, dest, prev = d["name"], out_dir / d["name"], entries.get(d["name"])
+        if prev and dest.exists() and not force:
+            stats["unchanged"].append(name)  # legacy PDFs are static; --force re-checks them
+            continue
+        try:
+            r = s.get(d["url"], timeout=60, allow_redirects=True)
+        except requests.RequestException as e:
+            print(f"  FAILED  {name}: {e.__class__.__name__}", file=sys.stderr)
+            stats["failed"].append(name)
+            continue
+        if r.status_code != 200 or not r.content.startswith(b"%PDF"):
+            print(f"  FAILED  {name}: HTTP {r.status_code}", file=sys.stderr)
+            stats["failed"].append(name)
+            continue
+        digest = hashlib.sha256(r.content).hexdigest()
+        if prev and prev.get("sha256") == digest and dest.exists():
+            stats["unchanged"].append(name)
+            continue
+        stats["updated" if prev else "new"].append(name)
+        print(f"  {'UPDATED' if prev else 'NEW    '} {name}")
+        dest.write_bytes(r.content)
+        entries[name] = {
+            "title": Path(name).stem,
+            "page_url": None,
+            "url": r.url,
+            "last_updated": None,
+            "legacy": True,
+            "downloaded": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "sha256": digest,
+            "bytes": len(r.content),
+        }
+        time.sleep(0.5)
+
     if stats["new"] or stats["updated"] or not manifest.get("generated"):
         manifest["generated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
@@ -193,7 +246,9 @@ def write_index(entries: dict, path: Path) -> None:
     lines = ["# Datasheet index", "", f"{len(rows)} datasheets from {BASE}/resources/datasheets.", "",
              "| Datasheet | Published (Palo Alto) | File |", "|---|---|---|"]
     for name, e in rows:
-        lines.append(f"| [{e['title']}]({e['page_url']}) | {e.get('last_updated') or 'n/a'} | [{name}]({name}) |")
+        link = e.get("page_url") or e.get("url")
+        tag = " (legacy)" if e.get("legacy") else ""
+        lines.append(f"| [{e['title']}]({link}){tag} | {e.get('last_updated') or 'n/a'} | [{name}]({name}) |")
     path.write_text("\n".join(lines) + "\n")
 
 
@@ -209,8 +264,9 @@ def main() -> int:
     cfg = load_sources(Path(a.sources))
     s = session()
     print("Discovering datasheet pages ...", flush=True)
-    slugs = discover(s, cfg)
+    slugs, direct = discover(s, cfg)
     print(f"{len(slugs)} datasheet pages: {', '.join(slugs)}", flush=True)
+    print(f"{len(direct)} direct PDFs: {', '.join(d['name'] for d in direct)}", flush=True)
     if not slugs:
         print("ERROR: no datasheet pages found; the source pages may have changed.", file=sys.stderr)
         return 2
@@ -219,9 +275,11 @@ def main() -> int:
     if a.list_only:
         for i in infos:
             print(f"  {i.get('last_updated') or '----------'}  {i['slug']:40} {i.get('title') or ''} {('ERROR ' + i['error']) if i.get('error') else ''}")
+        for d in direct:
+            print(f"  legacy PDF  {d['name']:40} {d['url']}")
         return 0
 
-    stats = sync(s, infos, Path(a.out), Path(a.manifest), force=a.force)
+    stats = sync(s, infos, Path(a.out), Path(a.manifest), force=a.force, direct=direct)
     print(f"Done: {len(stats['new'])} new, {len(stats['updated'])} updated, "
           f"{len(stats['unchanged'])} unchanged, {len(stats['failed'])} failed")
     ok = stats["new"] or stats["updated"] or stats["unchanged"]

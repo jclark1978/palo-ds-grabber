@@ -31,6 +31,8 @@ python pa_grabber.py                # download
 2. **Check:** read each datasheet page's title and published date. If the date hasn't changed and the PDF is present, skip it.
 3. **Download:** try Palo Alto's download handler, then the PDF's asset path. A changed PDF replaces the old one, which moves to `datasheets/_archive/`.
 
+**Legacy models.** End-of-sale models aren't linked from the current product pages, so the grabber also reads Palo Alto's [Hardware End-of-Life Dates](https://www.paloaltonetworks.com/services/support/end-of-life-announcements/hardware-end-of-life-dates) page. Its Resources column links each model's datasheet page (PA-220, PA-3200, PA-5200, PA-7000, ...) or, for the oldest models, a PDF file directly (PA-500, PA-2000, PA-4000). The few old specsheets no page links to any more (PA-200, PA-3000, PA-5000) are listed under `extra_pdfs` in `sources.yaml`. Direct PDFs have no published date; they're downloaded once and marked `"legacy": true` in `manifest.json` (`--force` re-checks them).
+
 To add a datasheet the crawl misses, put its slug (the last part of its `/resources/datasheets/...` URL) under `extra_slugs` in `sources.yaml`.
 
 ## JSON specs
