@@ -1,0 +1,99 @@
+{
+  "model": "PA-500",
+  "model_id": "PA-500",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-500",
+  "form_factor": "appliance",
+  "legacy": true,
+  "source": {
+    "title": "PA-500 Datasheet",
+    "url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-500/pa-500-ds.pdf",
+    "page_url": null,
+    "spec_url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-500/pa-500-ds.pdf#page=1",
+    "file": "pa-500-ds.pdf",
+    "library_last_updated": null,
+    "sha256": "c1b03707001c59600de8a6e97cc028b45ff3fb69ff48c9d852277feaa87f1746"
+  },
+  "test_conditions": {
+    "pan_os": null,
+    "note": null
+  },
+  "specs": {
+    "fw_throughput_appid_mbps": {
+      "value": 250,
+      "raw": "250 Mbps",
+      "label": "Firewall throughput (App-ID enabled)",
+      "pan_os": null
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 100,
+      "raw": "100 Mbps",
+      "label": "Threat Prevention throughput",
+      "pan_os": null
+    },
+    "ipsec_throughput_mbps": {
+      "value": 50,
+      "raw": "50 Mbps",
+      "label": "IPsec VPN throughput",
+      "pan_os": null
+    },
+    "new_sessions_per_sec": {
+      "value": 7500,
+      "raw": "7,500",
+      "label": "New sessions per second",
+      "pan_os": null
+    },
+    "concurrent_sessions": {
+      "value": 64000,
+      "raw": "64,000",
+      "label": "Max sessions",
+      "pan_os": null
+    }
+  },
+  "hardware": {
+    "power_avg_w": 40.0,
+    "power_max_w": 75.0,
+    "heat_btu_h": 256,
+    "rack_units": 1,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 44.4,
+      "w": 431.8,
+      "d": 254.0
+    },
+    "weight_kg": 3.63,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 50
+    },
+    "interfaces": [
+      {
+        "type": "10/100/1000",
+        "count": 8
+      }
+    ],
+    "storage": "160GB HDD",
+    "mtbf": "10.16 years",
+    "raw": {
+      "I/O": "(8) 10/100/1000",
+      "Management I/O": "(1) 10/100/1000 out-of-band management port,; (1) RJ-45 console port",
+      "Storage Capacity": "160GB HDD",
+      "Power Supply (Avg/Max Power Consumption)": "180 W (40 W / 75 W)",
+      "Max BTU/hr": "256",
+      "Input Voltage (Input Frequency)": "100–240VAC (50–60Hz)",
+      "Max Current Consumption": "1A @ 100VAC",
+      "Mean Time Between Failure": "10.16 years",
+      "Max Inrush Current": "110A @ 230VAC; 51A @ 115VAC",
+      "Rack Mountable (Dimensions)": "1U, 19” standard rack (1.75” H x 10” D x 17” W)",
+      "Weight (Stand-Alone Device/As shipped)": "8 lbs / 13 lbs",
+      "Safety": "cCSAus, CB",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A",
+      "Certifications": "See https://www.paloaltonetworks.com/company/certifications.html",
+      "Environment": "Operating temperature: 32° to 122° F, 0° to 50° C; Non-operating temperature: -4° to 158° F, -20° to 70° C"
+    }
+  },
+  "vm": null,
+  "footnotes": {},
+  "other": {}
+}

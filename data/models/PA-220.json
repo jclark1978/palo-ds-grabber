@@ -1,0 +1,127 @@
+{
+  "model": "PA-220",
+  "model_id": "PA-220",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-220",
+  "form_factor": "appliance",
+  "legacy": true,
+  "source": {
+    "title": "PA-220 Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-220-specsheet",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-220-specsheet",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-220-specsheet#page=4",
+    "file": "pa-220-specsheet.pdf",
+    "library_last_updated": "2022-03-24",
+    "sha256": "b2ae191c993269834504e77e1f1d156cb66739f7216cc67edf94b4f67c18caa4"
+  },
+  "test_conditions": {
+    "pan_os": "10.2",
+    "note": "Results were measured on PAN-OS 10.2."
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 535,
+      "raw": "545/535 Mbps",
+      "label": "Firewall throughput (HTTP/appmix)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled, using 64 KB HTTP/appmix transactions."
+      ],
+      "http_value": 545,
+      "note": "Datasheet prints HTTP/appmix; value is the appmix number.",
+      "pan_os": "10.2"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 320,
+      "raw": "265/320 Mbps",
+      "label": "Threat Prevention throughput (HTTP/appmix)",
+      "notes": [
+        "†"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, anti-spyware, WildFire, DNS Security, file blocking, and logging enabled, utilizing 64 KB HTTP/appmix transactions."
+      ],
+      "http_value": 265,
+      "note": "Datasheet prints HTTP/appmix; value is the appmix number.",
+      "pan_os": "10.2"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 550,
+      "raw": "550 Mbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "‡"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+      ],
+      "pan_os": "10.2"
+    },
+    "concurrent_sessions": {
+      "value": 64000,
+      "raw": "64,000",
+      "label": "Max sessions",
+      "pan_os": "10.2"
+    },
+    "new_sessions_per_sec": {
+      "value": 4200,
+      "raw": "4,200",
+      "label": "New sessions per second",
+      "notes": [
+        "§"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application-override utilizing 1 byte HTTP transactions. The PA-220 supports a wide range of networking features that enable you to more easily integrate our security features into your existing network."
+      ],
+      "pan_os": "10.2"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 21.0,
+    "power_max_w": 25.0,
+    "rack_units": null,
+    "desktop": true,
+    "dimensions_mm": {
+      "h": 41.1,
+      "w": 205.0,
+      "d": 159.8
+    },
+    "weight_kg": 1.36,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 40
+    },
+    "interfaces": [
+      {
+        "type": "10/100/1000",
+        "count": 8
+      }
+    ],
+    "storage": "32 GB eMMC",
+    "raw": {
+      "I/O": "10/100/1000 (8)",
+      "Management I/O": "10/100/1000 out-of-band management port (1) RJ-45 console port (1) USB port (1) Micro USB console port (1)",
+      "Storage Capacity": "32 GB eMMC",
+      "Power Supply (Avg/Max Power Consumption)": "Optional: dual redundant 40 W (21 W / 25 W); 102",
+      "Input Voltage (Input Frequency)": "100–240 VAC (50–60Hz)",
+      "Max Current Consumption": "Firewall: 1.75 A @ 12 VDC; Power supply (AC side): 1.5A",
+      "Dimensions": "1.62” H x 6.29” D x 8.07” W",
+      "Weight (Standalone Device/As Shipped)": "3.0 lbs / 5.4 lbs",
+      "Safety": "cTUVus, CB",
+      "EMI": "FCC Class B, CE Class B, VCCI Class B",
+      "Certifications": "See paloaltonetworks.com/company/certifications.html",
+      "Environment": "Operating temperature: 32° to 104° F, 0° to 40° C Non-operating temperature: -4° to 158° F, -20° to 70° C Passive cooling; To learn more about the features and associated capacities of the PA-220, please visit paloaltonetworks.; com/network-security/next-generation-firewall/pa-220 ."
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Firewall throughput is measured with App-ID and logging enabled, using 64 KB HTTP/appmix transactions.",
+    "†": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, anti-spyware, WildFire, DNS Security, file blocking, and logging enabled, utilizing 64 KB HTTP/appmix transactions.",
+    "‡": "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+    "§": "New sessions per second is measured with application-override utilizing 1 byte HTTP transactions. The PA-220 supports a wide range of networking features that enable you to more easily integrate our security features into your existing network."
+  },
+  "other": {}
+}

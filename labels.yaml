@@ -19,6 +19,9 @@
 # hardware.raw (hardware) and listed in reports/unmapped_labels.txt.
 
 performance:
+  fw_throughput_appid_mbps:      # 2013-2018 specsheets: "App-ID enabled", not appmix; kept apart on purpose
+    parse: mbps
+    patterns: ['^Firewall throughput \(App-ID']
   fw_throughput_appmix_mbps:
     parse: mbps
     patterns: ['^Firewall throughput']
@@ -41,11 +44,33 @@ performance:
   compliance_rating:
     parse: text
     patterns: ['^Compliance rating']
+  # capacities only the 2013-2015 specsheets publish (FortiGate-compatible names where one exists)
+  ipsec_tunnels:
+    parse: count
+    patterns: ['^IPsec VPN tunnels']
+  ssl_vpn_users:
+    parse: count
+    patterns: ['^GlobalProtect \(SSL VPN\) concurrent users']
+  ssl_decrypt_sessions:
+    parse: count
+    patterns: ['^SSL decrypt sessions']
+  ssl_inbound_certificates:
+    parse: count
+    patterns: ['^SSL inbound certificates']
+  virtual_routers:
+    parse: count
+    patterns: ['^Virtual routers']
+  security_zones:
+    parse: count
+    patterns: ['^Security zones']
+  firewall_policies:
+    parse: count
+    patterns: ['^Max\.? number of policies']
 
 hardware:
   interfaces:            ['^[1I]/O\b', 'Networking I/O$', '^(Cellular|RJ-45|SFP|VIMS\*?|Digital I/O)$']
   management_io:         ['Management I/O']
-  storage:               ['^Storage Capacity']
+  storage:               ['^Storage (Capacity|Options)']
   tpm:                   ['^Trusted Platform Module']
   poe:                   ['^Power over Ethernet']
   power_consumption:     ['^Power Supply \(', '^Power Consumption', 'Power Consumption', '^Power Supply$']
@@ -54,7 +79,7 @@ hardware:
   input_voltage:         ['input voltage']
   psu_output:            ['power (supply )?output']
   max_current:           ['current']
-  mtbf:                  ['MTBF']
+  mtbf:                  ['MTBF', '^Mean Time Between Failure']
   dimensions:            ['Dimensions']
   weight:                ['^Weight']
   safety:                ['^Safety']
@@ -62,6 +87,13 @@ hardware:
   certifications:        ['^Certifications']
   environment:           ['^Environment']
   airflow:               ['^Airflow']
+
+# Hardware row labels that are wrong or not labels in the datasheet, as printed -> label to use.
+hardware_label_fixes:
+  "DC: 200 A @ 72 VDC": "Mean Time Between Failure (MTBF)"   # PA-5200: value printed in the label's place
+  "PA-7000-100G-NPC-A": "I/O"                                   # PA-7000 grid names the part, not the row
+  "PA-7050-SMC-B PA-7080-SMC-B": "Management I/O"
+  "PA-7000-LFC-A": "Storage Capacity"
 
 # The same model is sometimes printed two ways. Left: as printed. Right: the
 # model id used in the output (matches the hardware table, ordering table and
@@ -79,3 +111,4 @@ card_column_re: 'DPC|NPC'
 exclude_files:
   - vm-series-spec-sheet.pdf        # no spec tables; VM specs are web-only
   - product-summary-specsheet.pdf   # used for reports/crosscheck.txt only
+  - k2-series.pdf                   # 5G use-case sheet; no performance or hardware table

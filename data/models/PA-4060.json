@@ -1,0 +1,139 @@
+{
+  "model": "PA-4060",
+  "model_id": "PA-4060",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-4000 Series",
+  "form_factor": "appliance",
+  "legacy": true,
+  "source": {
+    "title": "PA-4000 Series Datasheet",
+    "url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-4000-series/pa-4000.pdf",
+    "page_url": null,
+    "spec_url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-4000-series/pa-4000.pdf#page=1",
+    "file": "pa-4000.pdf",
+    "library_last_updated": null,
+    "sha256": "816e64c76f9d79a0e240160189f3080d19d805ea1e42eb1f70dff969b35dcbb6"
+  },
+  "test_conditions": {
+    "pan_os": "6.0",
+    "note": "Performance and capacities are measured under ideal testing conditions using PAN-OS 6.0."
+  },
+  "specs": {
+    "fw_throughput_appid_mbps": {
+      "value": 10000,
+      "raw": "10 Gbps",
+      "label": "Firewall throughput (App-ID enabled)",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 6.0."
+      ],
+      "pan_os": "6.0"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 5000,
+      "raw": "5 Gbps",
+      "label": "Threat prevention throughput",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 6.0."
+      ],
+      "pan_os": "6.0"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 2000,
+      "raw": "2 Gbps",
+      "label": "IPSec VPN throughput",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 6.0."
+      ],
+      "pan_os": "6.0"
+    },
+    "new_sessions_per_sec": {
+      "value": 60000,
+      "raw": "60,000",
+      "label": "New sessions per second",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 6.0."
+      ],
+      "pan_os": "6.0"
+    },
+    "concurrent_sessions": {
+      "value": 2000000,
+      "raw": "2,000,000",
+      "label": "Max sessions",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 6.0."
+      ],
+      "pan_os": "6.0"
+    },
+    "vsys_base": {
+      "value": 25,
+      "raw": "25/125",
+      "label": "Virtual systems (base/max )",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 6.0."
+      ],
+      "pan_os": "6.0"
+    },
+    "vsys_max": {
+      "value": 125,
+      "raw": "25/125",
+      "label": "Virtual systems (base/max )",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 6.0."
+      ],
+      "pan_os": "6.0"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 175.0,
+    "power_max_w": 200.0,
+    "heat_btu_h": 682,
+    "rack_units": 2,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 88.9,
+      "w": 444.5,
+      "d": 419.1
+    },
+    "weight_kg": 14.97,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 50
+    },
+    "interfaces": [
+      {
+        "type": "10 Gigabit XFP",
+        "count": 4
+      },
+      {
+        "type": "Gigabit SFP",
+        "count": 4
+      }
+    ],
+    "storage": "160GB HDD",
+    "mtbf": "7.18 years",
+    "raw": {
+      "I/O": "(4) 10 Gigabit XFP, (4) Gigabit SFP",
+      "MANAGEMENT I/O": "(2) 10/100/1000 high availability, (1) 10/100/1000 out-of-band management, (1) DB9 console port",
+      "STORAGE CAPACITY": "160GB HDD",
+      "POWER SUPPLY (AVG/MAX POWER CONSUMPTION)": "Redundant 400W AC (175W/200W)",
+      "MAX BTU/HR": "682",
+      "INPUT VOLTAGE (INPUT FREQUENCY)": "100-240VAC (50-60Hz)",
+      "MAX CURRENT CONSUMPTION": "2.5A@100VAC",
+      "MEAN TIME BETWEEN FAILURE (MTBF)": "7.18 years",
+      "MAX INRUSH CURRENT": "50A@230VAC; 30A@120VAC",
+      "RACK MOUNTABLE (DIMENSIONS)": "2U, 19” standard rack (3.5”H x 16.5”D x 17.5”W)",
+      "WEIGHT (STAND ALONE DEVICE/AS SHIPPED)": "33lbs/40lbs",
+      "SAFETY": "UL, CUL, CB",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A, TUV",
+      "CERTIFICATIONS": "FIPS 140 Level 2, Common Criteria EAL2, ICSA, UCAPL",
+      "ENVIRONMENT": "Operating temperature: 32 to 122 F, 0 to 50 C; Non-operating temperature: -4 to 158 F, -20 to 70 C; Palo Alto Networks, Inc. All specifications are subject to change without notice.; Palo Alto Networks assumes no responsibility for any inaccuracies in this document; or for any obligation to update information in this document. Palo Alto Networks"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "1": "Performance and capacities are measured under ideal testing conditions using PAN-OS 6.0.",
+    "2": "Adding virtual systems to the base quantity requires a separately purchased license."
+  },
+  "other": {}
+}

@@ -83,6 +83,18 @@ def to_count(raw: str) -> float | None:
     return int(round(n))
 
 
+def split_http_appmix(label: str, raw: str) -> tuple[str, str | None]:
+    """'(HTTP/appmix)' rows print 'HTTP/appmix' values ('545/535 Mbps',
+    '1.0/1.2 Gbps'). -> (appmix raw, HTTP raw); unit copied to both."""
+    if not re.search(r"HTTP\s*/\s*appmix", label, re.I):
+        return raw, None
+    m = re.match(r"^\s*([\d.,]+)\s*(\w*bps)?\s*/\s*([\d.,]+)\s*(\w*bps)?\s*$", clean(raw), re.I)
+    if not m:
+        return raw, None
+    unit = m.group(4) or m.group(2) or ""
+    return f"{m.group(3)} {m.group(4) or unit}".strip(), f"{m.group(1)} {m.group(2) or unit}".strip()
+
+
 def parse_perf(kind: str, raw: str):
     if is_none(raw):
         return {None: None}, None
@@ -109,12 +121,16 @@ class Config:
         self.aliases = cfg.get("model_aliases") or {}
         self.card_re = re.compile(cfg.get("card_column_re", r"$^"))
         self.exclude = cfg.get("exclude_files") or []
+        self.label_fixes = {clean(k): v for k, v in (cfg.get("hardware_label_fixes") or {}).items()}
 
     def perf_field(self, label):
         return next(((n, s) for rx, n, s in self.perf if rx.search(label)), None)
 
     def hw_field(self, label):
         return next((n for rx, n in self.hw if rx.search(label)), None)
+
+    def fix_label(self, label: str) -> str:
+        return self.label_fixes.get(clean(label), clean(label))
 
     def canon(self, model: str) -> str:
         m = clean(model).upper()
@@ -129,6 +145,36 @@ class Config:
 # --------------------------------------------------------------------------
 def models_in(text: str) -> list[str]:
     return re.findall(MODEL_TOKEN, text)
+
+
+def inline_per_model(line: str, known: set, cfg: Config) -> dict[str, str] | None:
+    """Lines that scope values to models mid-line:
+      'Maximum: PA-820: 120 W; PA-850: 240 W Average: PA-820: 41 W; PA-850: 64 W'
+      'HSCI: PA-1510-POE: 10G SFP+ (1), PA-1520-POE, PA-1530-POE: 25G SFP28 (1)'
+    -> {'PA-820': 'Maximum: 120 W; Average: 41 W', ...}. A line that starts with
+    the model list ('PA-820: ...') is a normal scoped line and returns None."""
+    mt = rf"{MODEL_TOKEN}[*†‡§#]*"
+    groups = list(re.finditer(rf"((?:{mt}\s*(?:,|\band\b|\bor\b)\s*)*{mt})\s*:\s*", line))
+    if not groups or groups[0].start() == 0:
+        return None
+    if len({cfg.canon(m) for g in groups for m in models_in(g.group(1))} & known) < 2:
+        return None
+    out: dict[str, list[str]] = {}
+    for i, g in enumerate(groups):
+        end = groups[i + 1].start() if i + 1 < len(groups) else len(line)
+        seg = line[g.end():end]
+        seg = re.sub(r"\s[A-Z][A-Za-z]+:\s*$", "", seg)  # next context word ('Average:')
+        ctx = None
+        for c in re.finditer(r"(?:^|\s)([A-Z][A-Za-z]+):\s", line[:g.start()]):
+            ctx = c.group(1)
+        if not seg.strip(" ;,"):
+            continue
+        text = f"{ctx + ': ' if ctx else ''}{seg.strip(' ;,')}"
+        for m in models_in(g.group(1)):
+            mid = cfg.canon(m)
+            if mid in known:
+                out.setdefault(mid, []).append(text)
+    return {k: "; ".join(v) for k, v in out.items()} if out else None
 
 
 def hardware_by_model(hw: dict, models: list[str], cfg: Config, problems: list[str]) -> dict[str, dict]:
@@ -148,7 +194,21 @@ def hardware_by_model(hw: dict, models: list[str], cfg: Config, problems: list[s
         return hit, miss
 
     for row in (hw or {}).get("rows", []):
-        label = clean(row["label"])
+        label = cfg.fix_label(row["label"])
+        if row.get("subtable") and row["subtable"].get("transposed"):
+            # rows are attributes, columns are systems (PA-7000)
+            st = row["subtable"]
+            colmap = {}
+            for col in st["columns"]:
+                hit, _ = resolve(models_in(col))
+                if len(hit) == 1:
+                    colmap[col] = hit[0]
+            for r in st["rows"]:
+                rlabel = cfg.fix_label(r["model"])
+                for col, val in r["cells"].items():
+                    if col in colmap and not is_none(val):
+                        add([colmap[col]], rlabel, clean(val))
+            continue
         if row.get("subtable"):
             st = row["subtable"]
             for r in st["rows"]:
@@ -162,6 +222,11 @@ def hardware_by_model(hw: dict, models: list[str], cfg: Config, problems: list[s
         scope = None
         for line in row["lines"]:
             line = clean(line)
+            per = inline_per_model(line, known, cfg)
+            if per:
+                for m, text in per.items():
+                    add([m], label, text)
+                continue
             toks, value = scope_models(line)
             if toks:
                 hit, miss = resolve(toks)
@@ -194,6 +259,11 @@ W_NUM = r"(\d[\d,]*(?:\.\d+)?)"
 def parse_power(label: str, text: str) -> tuple[float | None, float | None]:
     """-> (avg_w, max_w). Ignores PSU ratings and PoE budgets in the text."""
     low = label.lower()
+    if re.search(r"avg\s*/\s*max", low):
+        # 'PSU rating (avg/max)': '250W (150/200)', 'Redundant 400W AC (175W/200W)', '180 W (40 W / 75 W)'
+        m = re.search(rf"\(\s*{W_NUM}\s*(?:W\b)?\s*/\s*{W_NUM}\s*(?:W\b)?\s*\)", text, re.I)
+        if m:
+            return float(m.group(1).replace(",", "")), float(m.group(2).replace(",", ""))
     t = re.sub(r"\(with [^)]*\)|with \d[\d,]*\s*W PoE\)?|\d[\d,]*\s*W PoE( output)?", " ", text, flags=re.I)
     t = re.sub(r"\d[\d,]*\s*-?\s*(?:W|watts?)\b\s*(?:/\s*)?(?:AC\s*|DC\s*)?power supply", " ", t, flags=re.I)
     t = re.sub(r"\d+-watt", " ", t, flags=re.I)
@@ -208,6 +278,15 @@ def parse_power(label: str, text: str) -> tuple[float | None, float | None]:
                 vals.append(float(m.group(g).replace(",", "")) * mult(m.group(u) or unit))
     else:
         vals = [float(n.replace(",", "")) * mult(u) for n, u in re.findall(rf"{W_NUM}\s*(KW|W)\b", t, re.I)]
+    mx_m = re.search(rf"Max(?:imum)?:\s*{W_NUM}\s*(KW|W)\b", t, re.I)
+    av_m = re.search(rf"Av(?:era)?g(?:e)?:\s*{W_NUM}\s*(KW|W)\b", t, re.I)
+    if mx_m or av_m:
+        f = lambda m: float(m.group(1).replace(",", "")) * mult(m.group(2)) if m else None
+        return f(av_m), f(mx_m)
+    if not vals and re.search(r"avg\s*/\s*max", low):
+        m = re.search(rf"\(\s*{W_NUM}\s*/\s*{W_NUM}\s*\)", t)  # 'Redundant 650-watt AC or DC (195/240)'
+        if m:
+            return float(m.group(1).replace(",", "")), float(m.group(2).replace(",", ""))
     if not vals:
         return None, None
     if "idle/typical/max" in low and len(vals) >= 3:
@@ -272,17 +351,22 @@ def derive_hardware(raw_by_field: dict[str, list[tuple[str, str]]], cells: dict[
             hw["weight_kg"] = round(w if m.group(2).lower() == "kg" else w * 0.45359, 2)
     # Operating temperature
     if "environment" in raw_by_field:
-        m = re.search(r"Operating temperature:[^,;]*?(-?\d+)\s*°C\s*(?:to|–|-)\s*(-?\d+)\s*°C",
-                      joined(raw_by_field["environment"]))
-        if m:
-            hw["operating_temp_c"] = {"min": int(m.group(1)), "max": int(m.group(2))}
+        env = joined(raw_by_field["environment"])
+        seg = re.search(r"(?<!non-)(?<!non)Operating temperature\s*[:–-]?\s*(.*?)(?:;|Non-?operating|$)", env, re.I)
+        if seg:  # '32°F to 104°F, 0°C to 40°C' / '0° to 40° C' / '-40°C to 70°C' / '0 to 50 C'
+            m = re.search(r"(-?\d+)\s*°?\s*(?:C\s*)?(?:to|–|-)\s*(-?\d+)\s*°?\s*C\b", seg.group(1))
+            if m:
+                hw["operating_temp_c"] = {"min": int(m.group(1)), "max": int(m.group(2))}
     # Interfaces
     ifs = []
     if "interfaces" in raw_by_field:
         t = joined(raw_by_field["interfaces"])
         for part in re.split(r",\s*(?![^()]*\))|;\s*", t):
             m = re.match(r"^\s*(?:and\s+)?(.+?)\s*\((\d+)\)\s*(/\s*PoE)?\s*(.*)$", part)
-            if m:
+            m2 = re.match(r"^\s*(?:and\s+)?\((\d+)\)\s*(.+?)\s*$", part)  # 2013-2018: '(12) 10/100/1000'
+            if m2:
+                ifs.append({"type": clean(m2.group(2)), "count": int(m2.group(1))})
+            elif m:
                 ifs.append({"type": clean(m.group(1) + (" PoE" if m.group(3) else "") +
                                           (" " + m.group(4) if m.group(4) and len(m.group(4)) < 40 else "")),
                             "count": int(m.group(2))})
@@ -333,10 +417,21 @@ def build(ds_dir: Path, manifest: dict, cfg: Config):
         foot = {k: clean(v) for k, v in perf["footnotes"].items()}
         note = foot.get("note", "")
         m = re.search(r"PAN-OS\s*(\d+(?:\.\d+)*)", note)
+        if not m:  # 2013-2015 specsheets: '1 Performance and capacities are measured ... using PAN-OS 5.0.'
+            for k, v in foot.items():
+                m = re.search(r"PAN-OS\s*(\d+(?:\.\d+)*)", v)
+                if m:
+                    note = v
+                    break
         pan_os = m.group(1) if m else None
+        legacy = bool(meta.get("legacy"))
+        table_conds = [note] if perf.get("legacy_layout") and note else []
         if not pan_os:
             problems.append("PAN-OS version not found")
         series = series_name(perf.get("title", ""))
+        if perf.get("legacy_layout"):  # no caption: name the series from the file ('specsheet-pa-3000' -> 'PA-3000 Series')
+            fm = re.search(r"pa-(\d+)", pdf.stem)
+            series = f"PA-{fm.group(1)}" + (" Series" if len(perf["models"]) > 1 else "") if fm else pdf.stem
         url = meta.get("url")
 
         cols = perf["models"]
@@ -354,6 +449,7 @@ def build(ds_dir: Path, manifest: dict, cfg: Config):
                 "family": "PA-Series",
                 "series": series,
                 "form_factor": "appliance",
+                "legacy": legacy,
                 "source": {
                     "title": f"{series} Datasheet",
                     "url": url,
@@ -395,8 +491,12 @@ def build(ds_dir: Path, manifest: dict, cfg: Config):
                     if rec is None or rec["source"]["file"] != pdf.name:
                         continue
                     if is_card:
-                        pc = rec.setdefault("per_card", {"card": clean(re.sub(r"^Single\s+", "", col)),
-                                                         "specs": {}})
+                        cname = clean(re.sub(r"^Single\s+", "", col))
+                        cards = rec.setdefault("per_card", [])
+                        pc = next((c for c in cards if c["card"] == cname), None)
+                        if pc is None:
+                            pc = {"card": cname, "specs": {}}
+                            cards.append(pc)
                         store = pc["specs"]
                     else:
                         store = rec["specs"]
@@ -404,7 +504,9 @@ def build(ds_dir: Path, manifest: dict, cfg: Config):
                         (rec["other"] if not is_card else store)[label] = raw
                         continue
                     field, spec = hit
-                    parsed, assumed = parse_perf(spec["parse"], raw)
+                    val_raw, http_raw = (split_http_appmix(label, raw) if spec["parse"] == "mbps"
+                                         else (raw, None))
+                    parsed, assumed = parse_perf(spec["parse"], val_raw)
                     names = spec.get("fields") or [field]
                     for key, val in parsed.items():
                         fname = names[0] if key is None else (names[key] if key < len(names) else None)
@@ -413,11 +515,14 @@ def build(ds_dir: Path, manifest: dict, cfg: Config):
                         e = {"value": val, "raw": raw, "label": label}
                         if marks:
                             e["notes"] = marks
-                            conds = [foot[k] for k in marks if k in foot]
-                            if conds:
-                                e["test_conditions"] = conds
+                        conds = [foot[k] for k in marks if k in foot] + table_conds
+                        if conds:
+                            e["test_conditions"] = list(dict.fromkeys(conds))
                         if assumed and val is not None:
                             e["unit_assumed"] = assumed
+                        if http_raw:
+                            e["http_value"], _ = to_mbps(http_raw)
+                            e["note"] = "Datasheet prints HTTP/appmix; value is the appmix number."
                         e["pan_os"] = pan_os
                         store[fname] = e
 
@@ -451,7 +556,7 @@ def build(ds_dir: Path, manifest: dict, cfg: Config):
         pct = f"{100 * mapped // n_rows}%" if n_rows else "-"
         report.append(f"{'OK   ' if not problems else 'CHECK'}  {pdf.name:30} perf_page={perf['page']:<2} "
                       f"rows={n_rows} mapped={pct:>4} models={len(file_models)} PAN-OS={pan_os}"
-                      + (f"  cards={card_cols}" if card_cols else ""))
+                      + (f"  cards={card_cols}" if card_cols else "") + ("  legacy" if legacy else ""))
         for p in sorted(set(problems)):
             report.append(f"         - {p}")
     return models, unmapped, report
@@ -501,7 +606,8 @@ def crosscheck(summary_pdf: Path, models: dict, cfg: Config) -> list[str]:
     lines.insert(6, "")
     if missing:
         lines += ["", "In the summary but not in any series datasheet: " + ", ".join(sorted(missing))]
-    in_ds = sorted(set(models) - {cfg.canon(m) for b in summ["blocks"] for m in b["models"]})
+    in_ds = sorted({m for m, r in models.items() if not r.get("legacy")}
+                   - {cfg.canon(m) for b in summ["blocks"] for m in b["models"]})
     if in_ds:
         lines += ["In a series datasheet but not in the summary: " + ", ".join(in_ds)]
     return lines
@@ -510,7 +616,7 @@ def crosscheck(summary_pdf: Path, models: dict, cfg: Config) -> list[str]:
 # --------------------------------------------------------------------------
 # Outputs
 # --------------------------------------------------------------------------
-CSV_FIELDS = ["fw_throughput_appmix_mbps", "threat_prevention_throughput_mbps", "ipsec_throughput_mbps",
+CSV_FIELDS = ["fw_throughput_appmix_mbps", "fw_throughput_appid_mbps", "threat_prevention_throughput_mbps", "ipsec_throughput_mbps",
               "concurrent_sessions", "new_sessions_per_sec", "vsys_base", "vsys_max"]
 
 
@@ -555,6 +661,7 @@ def write_outputs(models, unmapped, report, cross, out_root: Path) -> None:
         index.append({"model_id": r["model_id"], "model": r["model"], "form_factor": r["form_factor"],
                       "file": f"data/models/{slug}.json", "family": r["family"], "series": r["series"],
                       "codes": model_codes(r["model_id"]), "pan_os": r["test_conditions"]["pan_os"],
+                      "legacy": r["legacy"],
                       "spec_url": r["source"]["spec_url"]})
     for f in (data / "models").glob("*.json"):
         if f.name not in keep:
@@ -563,14 +670,17 @@ def write_outputs(models, unmapped, report, cross, out_root: Path) -> None:
         "schema_version": SCHEMA_VERSION, "vendor": VENDOR, "count": len(index),
         "match_rule": "Uppercase the user's text, strip 'PALO ALTO', 'NETWORKS', a leading 'PA', spaces "
                       "and a leading dash, then compare to 'codes' (with and without dashes).",
+        "legacy_rule": "legacy: true = end-of-sale model, found only through Palo Alto's Hardware End-of-Life "
+                       "Dates page. Its datasheet may be years old and measured on an old PAN-OS release; "
+                       "skip legacy models when picking a current competitor match.",
         "models": index}, indent=1, ensure_ascii=False) + "\n")
 
     with open(data / "models.csv", "w", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
-        w.writerow(["model_id", "series", "pan_os", "rack_units", "power_max_w"] + CSV_FIELDS + ["spec_url"])
+        w.writerow(["model_id", "series", "legacy", "pan_os", "rack_units", "power_max_w"] + CSV_FIELDS + ["spec_url"])
         for r in recs:
             hw = r["hardware"] or {}
-            w.writerow([r["model_id"], r["series"], r["test_conditions"]["pan_os"], hw.get("rack_units"),
+            w.writerow([r["model_id"], r["series"], r["legacy"], r["test_conditions"]["pan_os"], hw.get("rack_units"),
                         hw.get("power_max_w")] + [(r["specs"].get(k) or {}).get("value") for k in CSV_FIELDS]
                        + [r["source"]["spec_url"]])
 

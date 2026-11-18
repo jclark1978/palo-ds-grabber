@@ -5,6 +5,7 @@
   "family": "PA-Series",
   "series": "PA-1500 Series",
   "form_factor": "appliance",
+  "legacy": false,
   "source": {
     "title": "PA-1500 Series Datasheet",
     "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1500-series",
@@ -115,6 +116,10 @@
       "d": 499.9
     },
     "weight_kg": 9.75,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 40
+    },
     "interfaces": [
       {
         "type": "10/100/1000 Cu",
@@ -143,7 +148,7 @@
     "raw": {
       "I/O": "10/100/1000 Cu (8), 1G/2.5G/5G Cu (4), 1G/2.5G/5/10G Cu (8), 1/10G SFP+ (8), 10G/25G SFP28 (4)",
       "Power over Ethernet (PoE)": "Available on ports 5–20:; 724W total, 90W max per port",
-      "Management I/O": "Out-of-band management: 10/100/1000 Cu (1); Console: RJ-45 console port (1); Console: USB-C (1); Bootstrap: USB 3.2 Gen1 Type A (1); HA: 10/100/1000 Cu (2); HSCI: PA-1510-POE: 10G SFP+ (1), PA-1520-POE, PA-1530-POE: 25G SFP28 (1)",
+      "Management I/O": "Out-of-band management: 10/100/1000 Cu (1); Console: RJ-45 console port (1); Console: USB-C (1); Bootstrap: USB 3.2 Gen1 Type A (1); HA: 10/100/1000 Cu (2); HSCI: 25G SFP28 (1)",
       "Storage Capacity": "960 GB",
       "Power Supply (Avg/Max Power Consumption)": "1107W (max power with 724W PoE)",
       "Max BTU/hr": "1057.8 BTU/hr (max system power dissipation of 310W)",

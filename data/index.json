@@ -1,8 +1,9 @@
 {
  "schema_version": "1.0",
  "vendor": "Palo Alto Networks",
- "count": 56,
+ "count": 81,
  "match_rule": "Uppercase the user's text, strip 'PALO ALTO', 'NETWORKS', a leading 'PA', spaces and a leading dash, then compare to 'codes' (with and without dashes).",
+ "legacy_rule": "legacy: true = end-of-sale model, found only through Palo Alto's Hardware End-of-Life Dates page. Its datasheet may be years old and measured on an old PAN-OS release; skip legacy models when picking a current competitor match.",
  "models": [
   {
    "model_id": "PA-52R-5G",
@@ -16,6 +17,7 @@
     "52R5G"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-50r-series#page=5"
   },
   {
@@ -30,6 +32,7 @@
     "54RPOE"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-50r-series#page=5"
   },
   {
@@ -44,6 +47,7 @@
     "54RPOED5G"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-50r-series#page=5"
   },
   {
@@ -58,7 +62,50 @@
     "56RPOE5G"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-50r-series#page=5"
+  },
+  {
+   "model_id": "PA-200",
+   "model": "PA-200",
+   "form_factor": "appliance",
+   "file": "data/models/PA-200.json",
+   "family": "PA-Series",
+   "series": "PA-200",
+   "codes": [
+    "200"
+   ],
+   "pan_os": "5.0",
+   "legacy": true,
+   "spec_url": "https://media.paloaltonetworks.com/documents/specsheet-pa-200.pdf#page=1"
+  },
+  {
+   "model_id": "PA-220",
+   "model": "PA-220",
+   "form_factor": "appliance",
+   "file": "data/models/PA-220.json",
+   "family": "PA-Series",
+   "series": "PA-220",
+   "codes": [
+    "220"
+   ],
+   "pan_os": "10.2",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-220-specsheet#page=4"
+  },
+  {
+   "model_id": "PA-220R",
+   "model": "PA-220R",
+   "form_factor": "appliance",
+   "file": "data/models/PA-220R.json",
+   "family": "PA-Series",
+   "series": "PA-220R",
+   "codes": [
+    "220R"
+   ],
+   "pan_os": "10.2",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-220r#page=4"
   },
   {
    "model_id": "PA-410",
@@ -71,6 +118,7 @@
     "410"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6"
   },
   {
@@ -84,6 +132,7 @@
     "410R"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400r-series#page=5"
   },
   {
@@ -98,6 +147,7 @@
     "410R5G"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400r-series#page=5"
   },
   {
@@ -111,6 +161,7 @@
     "415"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6"
   },
   {
@@ -125,6 +176,7 @@
     "4155G"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6"
   },
   {
@@ -138,6 +190,7 @@
     "440"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6"
   },
   {
@@ -151,6 +204,7 @@
     "445"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6"
   },
   {
@@ -164,6 +218,7 @@
     "450"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6"
   },
   {
@@ -177,6 +232,7 @@
     "450R"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400r-series#page=5"
   },
   {
@@ -191,6 +247,7 @@
     "450R5G"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400r-series#page=5"
   },
   {
@@ -204,6 +261,7 @@
     "455"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6"
   },
   {
@@ -218,6 +276,7 @@
     "4555G"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6"
   },
   {
@@ -232,6 +291,7 @@
     "455R5G"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400r-series#page=5"
   },
   {
@@ -245,7 +305,22 @@
     "460"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-400-series#page=6"
+  },
+  {
+   "model_id": "PA-500",
+   "model": "PA-500",
+   "form_factor": "appliance",
+   "file": "data/models/PA-500.json",
+   "family": "PA-Series",
+   "series": "PA-500",
+   "codes": [
+    "500"
+   ],
+   "pan_os": null,
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-500/pa-500-ds.pdf#page=1"
   },
   {
    "model_id": "PA-501",
@@ -258,6 +333,7 @@
     "501"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
   },
   {
@@ -271,6 +347,7 @@
     "505"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
   },
   {
@@ -284,6 +361,7 @@
     "510"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
   },
   {
@@ -297,6 +375,7 @@
     "520"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
   },
   {
@@ -311,6 +390,7 @@
     "5205G"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
   },
   {
@@ -324,6 +404,7 @@
     "540"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
   },
   {
@@ -338,6 +419,7 @@
     "545POE"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
   },
   {
@@ -351,6 +433,7 @@
     "550"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
   },
   {
@@ -365,6 +448,7 @@
     "555POE"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
   },
   {
@@ -378,7 +462,36 @@
     "560"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-500-series#page=7"
+  },
+  {
+   "model_id": "PA-820",
+   "model": "PA-820",
+   "form_factor": "appliance",
+   "file": "data/models/PA-820.json",
+   "family": "PA-Series",
+   "series": "PA-800 Series",
+   "codes": [
+    "820"
+   ],
+   "pan_os": "11.0",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-800-series-datasheet#page=4"
+  },
+  {
+   "model_id": "PA-850",
+   "model": "PA-850",
+   "form_factor": "appliance",
+   "file": "data/models/PA-850.json",
+   "family": "PA-Series",
+   "series": "PA-800 Series",
+   "codes": [
+    "850"
+   ],
+   "pan_os": "11.0",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-800-series-datasheet#page=4"
   },
   {
    "model_id": "PA-1410",
@@ -391,6 +504,7 @@
     "1410"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1400-series#page=5"
   },
   {
@@ -404,6 +518,7 @@
     "1420"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1400-series#page=5"
   },
   {
@@ -418,6 +533,7 @@
     "1510POE"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1500-series#page=6"
   },
   {
@@ -432,6 +548,7 @@
     "1520POE"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1500-series#page=6"
   },
   {
@@ -446,7 +563,106 @@
     "1530POE"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-1500-series#page=6"
+  },
+  {
+   "model_id": "PA-2020",
+   "model": "PA-2020",
+   "form_factor": "appliance",
+   "file": "data/models/PA-2020.json",
+   "family": "PA-Series",
+   "series": "PA-2000 Series",
+   "codes": [
+    "2020"
+   ],
+   "pan_os": "6.0",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-2000-series/pa-2000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-2050",
+   "model": "PA-2050",
+   "form_factor": "appliance",
+   "file": "data/models/PA-2050.json",
+   "family": "PA-Series",
+   "series": "PA-2000 Series",
+   "codes": [
+    "2050"
+   ],
+   "pan_os": "6.0",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-2000-series/pa-2000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-3020",
+   "model": "PA-3020",
+   "form_factor": "appliance",
+   "file": "data/models/PA-3020.json",
+   "family": "PA-Series",
+   "series": "PA-3000 Series",
+   "codes": [
+    "3020"
+   ],
+   "pan_os": "5.0",
+   "legacy": true,
+   "spec_url": "https://media.paloaltonetworks.com/documents/specsheet-pa-3000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-3050",
+   "model": "PA-3050",
+   "form_factor": "appliance",
+   "file": "data/models/PA-3050.json",
+   "family": "PA-Series",
+   "series": "PA-3000 Series",
+   "codes": [
+    "3050"
+   ],
+   "pan_os": "5.0",
+   "legacy": true,
+   "spec_url": "https://media.paloaltonetworks.com/documents/specsheet-pa-3000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-3220",
+   "model": "PA-3220",
+   "form_factor": "appliance",
+   "file": "data/models/PA-3220.json",
+   "family": "PA-Series",
+   "series": "PA-3200 Series",
+   "codes": [
+    "3220"
+   ],
+   "pan_os": "11.1",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3200-series#page=5"
+  },
+  {
+   "model_id": "PA-3250",
+   "model": "PA-3250",
+   "form_factor": "appliance",
+   "file": "data/models/PA-3250.json",
+   "family": "PA-Series",
+   "series": "PA-3200 Series",
+   "codes": [
+    "3250"
+   ],
+   "pan_os": "11.1",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3200-series#page=5"
+  },
+  {
+   "model_id": "PA-3260",
+   "model": "PA-3260",
+   "form_factor": "appliance",
+   "file": "data/models/PA-3260.json",
+   "family": "PA-Series",
+   "series": "PA-3200 Series",
+   "codes": [
+    "3260"
+   ],
+   "pan_os": "11.1",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3200-series#page=5"
   },
   {
    "model_id": "PA-3410",
@@ -459,6 +675,7 @@
     "3410"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3400-series#page=5"
   },
   {
@@ -472,6 +689,7 @@
     "3420"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3400-series#page=5"
   },
   {
@@ -485,6 +703,7 @@
     "3430"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3400-series#page=5"
   },
   {
@@ -498,6 +717,7 @@
     "3440"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3400-series#page=5"
   },
   {
@@ -511,6 +731,7 @@
     "3510"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3500-series#page=6"
   },
   {
@@ -524,6 +745,7 @@
     "3520"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3500-series#page=6"
   },
   {
@@ -537,6 +759,7 @@
     "3530"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3500-series#page=6"
   },
   {
@@ -550,7 +773,148 @@
     "3540"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3500-series#page=6"
+  },
+  {
+   "model_id": "PA-4020",
+   "model": "PA-4020",
+   "form_factor": "appliance",
+   "file": "data/models/PA-4020.json",
+   "family": "PA-Series",
+   "series": "PA-4000 Series",
+   "codes": [
+    "4020"
+   ],
+   "pan_os": "6.0",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-4000-series/pa-4000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-4050",
+   "model": "PA-4050",
+   "form_factor": "appliance",
+   "file": "data/models/PA-4050.json",
+   "family": "PA-Series",
+   "series": "PA-4000 Series",
+   "codes": [
+    "4050"
+   ],
+   "pan_os": "6.0",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-4000-series/pa-4000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-4060",
+   "model": "PA-4060",
+   "form_factor": "appliance",
+   "file": "data/models/PA-4060.json",
+   "family": "PA-Series",
+   "series": "PA-4000 Series",
+   "codes": [
+    "4060"
+   ],
+   "pan_os": "6.0",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/content/dam/pan/en_US/assets/pdf/datasheets/pa-4000-series/pa-4000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-5020",
+   "model": "PA-5020",
+   "form_factor": "appliance",
+   "file": "data/models/PA-5020.json",
+   "family": "PA-Series",
+   "series": "PA-5000 Series",
+   "codes": [
+    "5020"
+   ],
+   "pan_os": "5.0",
+   "legacy": true,
+   "spec_url": "https://media.paloaltonetworks.com/documents/specsheet-pa-5000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-5050",
+   "model": "PA-5050",
+   "form_factor": "appliance",
+   "file": "data/models/PA-5050.json",
+   "family": "PA-Series",
+   "series": "PA-5000 Series",
+   "codes": [
+    "5050"
+   ],
+   "pan_os": "5.0",
+   "legacy": true,
+   "spec_url": "https://media.paloaltonetworks.com/documents/specsheet-pa-5000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-5060",
+   "model": "PA-5060",
+   "form_factor": "appliance",
+   "file": "data/models/PA-5060.json",
+   "family": "PA-Series",
+   "series": "PA-5000 Series",
+   "codes": [
+    "5060"
+   ],
+   "pan_os": "5.0",
+   "legacy": true,
+   "spec_url": "https://media.paloaltonetworks.com/documents/specsheet-pa-5000.pdf#page=1"
+  },
+  {
+   "model_id": "PA-5220",
+   "model": "PA-5220",
+   "form_factor": "appliance",
+   "file": "data/models/PA-5220.json",
+   "family": "PA-Series",
+   "series": "PA-5200 Series",
+   "codes": [
+    "5220"
+   ],
+   "pan_os": "11.2",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5200-series-specsheet#page=5"
+  },
+  {
+   "model_id": "PA-5250",
+   "model": "PA-5250",
+   "form_factor": "appliance",
+   "file": "data/models/PA-5250.json",
+   "family": "PA-Series",
+   "series": "PA-5200 Series",
+   "codes": [
+    "5250"
+   ],
+   "pan_os": "11.2",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5200-series-specsheet#page=5"
+  },
+  {
+   "model_id": "PA-5260",
+   "model": "PA-5260",
+   "form_factor": "appliance",
+   "file": "data/models/PA-5260.json",
+   "family": "PA-Series",
+   "series": "PA-5200 Series",
+   "codes": [
+    "5260"
+   ],
+   "pan_os": "11.2",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5200-series-specsheet#page=5"
+  },
+  {
+   "model_id": "PA-5280",
+   "model": "PA-5280",
+   "form_factor": "appliance",
+   "file": "data/models/PA-5280.json",
+   "family": "PA-Series",
+   "series": "PA-5200 Series",
+   "codes": [
+    "5280"
+   ],
+   "pan_os": "11.2",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5200-series-specsheet#page=5"
   },
   {
    "model_id": "PA-5410",
@@ -563,6 +927,7 @@
     "5410"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5400-series#page=6"
   },
   {
@@ -576,6 +941,7 @@
     "5420"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5400-series#page=6"
   },
   {
@@ -589,6 +955,7 @@
     "5430"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5400-series#page=6"
   },
   {
@@ -602,6 +969,7 @@
     "5440"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5400-series#page=6"
   },
   {
@@ -615,6 +983,7 @@
     "5445"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5400-series#page=6"
   },
   {
@@ -628,6 +997,7 @@
     "5450"
    ],
    "pan_os": "12.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5450-series#page=6"
   },
   {
@@ -641,6 +1011,7 @@
     "5510"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series#page=6"
   },
   {
@@ -654,6 +1025,7 @@
     "5520"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series#page=6"
   },
   {
@@ -667,6 +1039,7 @@
     "5530"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series#page=6"
   },
   {
@@ -680,6 +1053,7 @@
     "5540"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series#page=6"
   },
   {
@@ -693,6 +1067,7 @@
     "5550"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series#page=6"
   },
   {
@@ -706,6 +1081,7 @@
     "5560"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series#page=6"
   },
   {
@@ -719,6 +1095,7 @@
     "5570"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series#page=6"
   },
   {
@@ -732,7 +1109,36 @@
     "5580"
    ],
    "pan_os": "12.2",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series#page=6"
+  },
+  {
+   "model_id": "PA-7050",
+   "model": "PA-7050",
+   "form_factor": "appliance",
+   "file": "data/models/PA-7050.json",
+   "family": "PA-Series",
+   "series": "PA-7000 Series",
+   "codes": [
+    "7050"
+   ],
+   "pan_os": "11.2",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7000-series#page=5"
+  },
+  {
+   "model_id": "PA-7080",
+   "model": "PA-7080",
+   "form_factor": "appliance",
+   "file": "data/models/PA-7080.json",
+   "family": "PA-Series",
+   "series": "PA-7000 Series",
+   "codes": [
+    "7080"
+   ],
+   "pan_os": "11.2",
+   "legacy": true,
+   "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7000-series#page=5"
   },
   {
    "model_id": "PA-7500",
@@ -745,6 +1151,7 @@
     "7500"
    ],
    "pan_os": "11.1",
+   "legacy": false,
    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7500#page=5"
   }
  ]

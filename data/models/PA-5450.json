@@ -5,6 +5,7 @@
   "family": "PA-Series",
   "series": "PA-5450",
   "form_factor": "appliance",
+  "legacy": false,
   "source": {
     "title": "PA-5450 Datasheet",
     "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5450-series",
@@ -136,6 +137,10 @@
       "w": 441.5,
       "d": 768.3
     },
+    "operating_temp_c": {
+      "min": 0,
+      "max": 50
+    },
     "interfaces": [
       {
         "type": "100/1000/10G Cu",
@@ -185,81 +190,83 @@
   },
   "other": {},
   "printed_as": "PA-5450 Configured System",
-  "per_card": {
-    "card": "PA-5400-DPC-A",
-    "specs": {
-      "fw_throughput_appmix_mbps": {
-        "value": 75000,
-        "raw": "75 Gbps",
-        "label": "Firewall throughput (appmix)",
-        "notes": [
-          "†"
-        ],
-        "test_conditions": [
-          "Firewall throughput is measured with App-ID and logging enabled, by using appmix transactions."
-        ],
-        "pan_os": "12.1"
-      },
-      "threat_prevention_throughput_mbps": {
-        "value": 55000,
-        "raw": "55 Gbps",
-        "label": "Threat Prevention throughput (appmix)",
-        "notes": [
-          "‡"
-        ],
-        "test_conditions": [
-          "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, by using appmix transactions."
-        ],
-        "pan_os": "12.1"
-      },
-      "ipsec_throughput_mbps": {
-        "value": 17000,
-        "raw": "17 Gbps",
-        "label": "IPsec VPN throughput",
-        "notes": [
-          "§"
-        ],
-        "test_conditions": [
-          "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
-        ],
-        "pan_os": "12.1"
-      },
-      "concurrent_sessions": {
-        "value": 20000000,
-        "raw": "20M",
-        "label": "Max concurrent sessions",
-        "notes": [
-          "#"
-        ],
-        "test_conditions": [
-          "Max concurrent sessions are measured by using HTTP transactions."
-        ],
-        "pan_os": "12.1"
-      },
-      "new_sessions_per_sec": {
-        "value": 725000,
-        "raw": "725,000",
-        "label": "New sessions per second",
-        "notes": [
-          "**"
-        ],
-        "test_conditions": [
-          "New sessions per second is measured with application override, by using 1 byte HTTP transactions."
-        ],
-        "pan_os": "12.1"
-      },
-      "vsys_base": {
-        "value": null,
-        "raw": "—",
-        "label": "Virtual systems (base/max)",
-        "notes": [
-          "††"
-        ],
-        "test_conditions": [
-          "Adding virtual systems over base quantity requires a separately purchased license."
-        ],
-        "pan_os": "12.1"
+  "per_card": [
+    {
+      "card": "PA-5400-DPC-A",
+      "specs": {
+        "fw_throughput_appmix_mbps": {
+          "value": 75000,
+          "raw": "75 Gbps",
+          "label": "Firewall throughput (appmix)",
+          "notes": [
+            "†"
+          ],
+          "test_conditions": [
+            "Firewall throughput is measured with App-ID and logging enabled, by using appmix transactions."
+          ],
+          "pan_os": "12.1"
+        },
+        "threat_prevention_throughput_mbps": {
+          "value": 55000,
+          "raw": "55 Gbps",
+          "label": "Threat Prevention throughput (appmix)",
+          "notes": [
+            "‡"
+          ],
+          "test_conditions": [
+            "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, by using appmix transactions."
+          ],
+          "pan_os": "12.1"
+        },
+        "ipsec_throughput_mbps": {
+          "value": 17000,
+          "raw": "17 Gbps",
+          "label": "IPsec VPN throughput",
+          "notes": [
+            "§"
+          ],
+          "test_conditions": [
+            "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+          ],
+          "pan_os": "12.1"
+        },
+        "concurrent_sessions": {
+          "value": 20000000,
+          "raw": "20M",
+          "label": "Max concurrent sessions",
+          "notes": [
+            "#"
+          ],
+          "test_conditions": [
+            "Max concurrent sessions are measured by using HTTP transactions."
+          ],
+          "pan_os": "12.1"
+        },
+        "new_sessions_per_sec": {
+          "value": 725000,
+          "raw": "725,000",
+          "label": "New sessions per second",
+          "notes": [
+            "**"
+          ],
+          "test_conditions": [
+            "New sessions per second is measured with application override, by using 1 byte HTTP transactions."
+          ],
+          "pan_os": "12.1"
+        },
+        "vsys_base": {
+          "value": null,
+          "raw": "—",
+          "label": "Virtual systems (base/max)",
+          "notes": [
+            "††"
+          ],
+          "test_conditions": [
+            "Adding virtual systems over base quantity requires a separately purchased license."
+          ],
+          "pan_os": "12.1"
+        }
       }
     }
-  }
+  ]
 }

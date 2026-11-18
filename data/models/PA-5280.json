@@ -1,0 +1,171 @@
+{
+  "model": "PA-5280",
+  "model_id": "PA-5280",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-5200 Series",
+  "form_factor": "appliance",
+  "legacy": true,
+  "source": {
+    "title": "PA-5200 Series Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5200-series-specsheet",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-5200-series-specsheet",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5200-series-specsheet#page=5",
+    "file": "pa-5200-series-specsheet.pdf",
+    "library_last_updated": "2024-10-14",
+    "sha256": "f770e758fac39d4cadb0007a123ad721070ababb402af7e122f3004ff8a6e942"
+  },
+  "test_conditions": {
+    "pan_os": "11.2",
+    "note": "Results were measured on PAN-OS 11.2."
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 55000,
+      "raw": "55 Gbps",
+      "label": "Firewall throughput (appmix)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled, utilizing appmix transactions."
+      ],
+      "pan_os": "11.2"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 31000,
+      "raw": "31 Gbps",
+      "label": "Threat Prevention throughput (appmix)",
+      "notes": [
+        "†"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, utilizing appmix transactions."
+      ],
+      "pan_os": "11.2"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 25000,
+      "raw": "25 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "‡"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+      ],
+      "pan_os": "11.2"
+    },
+    "concurrent_sessions": {
+      "value": 64000000,
+      "raw": "64M",
+      "label": "Max concurrent sessions",
+      "notes": [
+        "§"
+      ],
+      "test_conditions": [
+        "Max concurrent sessions are measured utilizing HTTP transactions."
+      ],
+      "pan_os": "11.2"
+    },
+    "new_sessions_per_sec": {
+      "value": 500000,
+      "raw": "500,000",
+      "label": "New sessions per second",
+      "notes": [
+        "||"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions."
+      ],
+      "pan_os": "11.2"
+    },
+    "vsys_base": {
+      "value": 25,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license."
+      ],
+      "pan_os": "11.2"
+    },
+    "vsys_max": {
+      "value": 225,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "#"
+      ],
+      "test_conditions": [
+        "Adding virtual systems over base quantity requires a separately purchased license."
+      ],
+      "pan_os": "11.2"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 571.0,
+    "power_max_w": 870.0,
+    "heat_btu_h": 2340,
+    "rack_units": 3,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 133.3,
+      "w": 438.1,
+      "d": 520.7
+    },
+    "weight_kg": 20.87,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 50
+    },
+    "interfaces": [
+      {
+        "type": "100/1000/10G Cu",
+        "count": 4
+      },
+      {
+        "type": "1G/10G SFP/ SFP+",
+        "count": 16
+      },
+      {
+        "type": "40G/100G QSFP28",
+        "count": 4
+      }
+    ],
+    "storage": "240 GB SSD, RAID1, system storage; 2 TB HDD, RAID1 or 1.92 TB SSD, RAID1 log storage",
+    "mtbf": "9.23 years",
+    "power_supplies": "1:1 fully redundant (2/2)",
+    "raw": {
+      "I/O": "100/1000/10G Cu (4), 1G/10G SFP/ SFP+(16), 40G/100G QSFP28 (4)",
+      "Management I/O": "10/100/1000 (2), 40G/100G QSFP28 HA (1), 10/100/1000 out-of-band management (1), RJ45 console port (1)",
+      "Storage Capacity": "240 GB SSD, RAID1, system storage; 2 TB HDD, RAID1 or 1.92 TB SSD, RAID1 log storage",
+      "Power Supply (Avg/Max Power Consumption)": "571/870 W",
+      "Max BTU/hr": "2,340",
+      "Power Supplies (Base/Max)": "1:1 fully redundant (2/2)",
+      "AC Input Voltage (Input Hz)": "100–240 VAC (50–60 Hz)",
+      "AC Power Supply Output": "1,100 watts/power supply",
+      "Max Current Consumption": "AC: 8.5 A @ 100 VAC, 3.6 A @ 240 VAC; DC: 19 A @ -40 VDC, 12.7 A @ -60 VDC",
+      "Max Inrush Current": "AC: 50 A @ 230 VAC, 50 A @ 120 VAC; DC: 200 A @ 72 VDC",
+      "Mean Time Between Failure (MTBF)": "9.23 years",
+      "Rack Mount (Dimensions)": "3U, 19\" standard rack; 5.25\" H x 20.5\" D x 17.25\" W",
+      "Weight (Standalone Device/As Shipped)": "46 lbs/62 lbs",
+      "Safety": "cTUVus, CB",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A",
+      "Certifications": "See paloaltonetworks.com/company/certifications.html",
+      "Environment": "Operating temperature: 32°F to 122°F, 0°C to 50°C; Nonoperating temperature: -4°F to 158°F, -20°C to 70°C"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Firewall throughput is measured with App-ID and logging enabled, utilizing appmix transactions.",
+    "†": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, utilizing appmix transactions.",
+    "‡": "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+    "§": "Max concurrent sessions are measured utilizing HTTP transactions.",
+    "||": "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions.",
+    "#": "Adding virtual systems over base quantity requires a separately purchased license."
+  },
+  "other": {}
+}

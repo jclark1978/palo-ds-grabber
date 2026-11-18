@@ -1,0 +1,341 @@
+{
+  "model": "PA-7050",
+  "model_id": "PA-7050",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-7000 Series",
+  "form_factor": "appliance",
+  "legacy": true,
+  "source": {
+    "title": "PA-7000 Series Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7000-series",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-7000-series",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7000-series#page=5",
+    "file": "pa-7000-series.pdf",
+    "library_last_updated": "2024-07-16",
+    "sha256": "96393140b4ea7108e60c2f4877be25a2f6e8ce11435f3d7fc4da92f5a72c8968"
+  },
+  "test_conditions": {
+    "pan_os": "11.2",
+    "note": "Results were measured on PAN-OS 11.2.",
+    "column_notes": [
+      "Results in this column were derived from an optimum combination of PA-7000-DPC-A and PA-7000-100G-NPC-A cards populated in all available slots."
+    ]
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 343000,
+      "raw": "343 Gbps",
+      "label": "Firewall throughput (appmix)",
+      "notes": [
+        "†",
+        "*"
+      ],
+      "test_conditions": [
+        "Throughput is measured with App-ID and logging enabled, with appmix transactions.",
+        "Results in this column were derived from an optimum combination of PA-7000-DPC-A and PA-7000-100G-NPC-A cards populated in all available slots."
+      ],
+      "pan_os": "11.2"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 184000,
+      "raw": "184 Gbps",
+      "label": "Threat Prevention throughput (appmix)",
+      "notes": [
+        "‡",
+        "*"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, utilizing appmix transactions.",
+        "Results in this column were derived from an optimum combination of PA-7000-DPC-A and PA-7000-100G-NPC-A cards populated in all available slots."
+      ],
+      "pan_os": "11.2"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 190000,
+      "raw": "190 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "§",
+        "*"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions, and logging enabled.",
+        "Results in this column were derived from an optimum combination of PA-7000-DPC-A and PA-7000-100G-NPC-A cards populated in all available slots."
+      ],
+      "pan_os": "11.2"
+    },
+    "concurrent_sessions": {
+      "value": 245000000,
+      "raw": "245M",
+      "label": "Max concurrent sessions",
+      "notes": [
+        "||",
+        "*"
+      ],
+      "test_conditions": [
+        "Max concurrent sessions are measured utilizing HTTP transactions.",
+        "Results in this column were derived from an optimum combination of PA-7000-DPC-A and PA-7000-100G-NPC-A cards populated in all available slots."
+      ],
+      "pan_os": "11.2"
+    },
+    "new_sessions_per_sec": {
+      "value": 4000000,
+      "raw": "4M",
+      "label": "New sessions per second",
+      "notes": [
+        "#",
+        "*"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions.",
+        "Results in this column were derived from an optimum combination of PA-7000-DPC-A and PA-7000-100G-NPC-A cards populated in all available slots."
+      ],
+      "pan_os": "11.2"
+    },
+    "vsys_base": {
+      "value": 25,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "**",
+        "*"
+      ],
+      "test_conditions": [
+        "The base system includes 25 virtual systems at no cost, and up to 200 additional licenses may be purchased. The maximum number of virtual systems supported is 225.",
+        "Results in this column were derived from an optimum combination of PA-7000-DPC-A and PA-7000-100G-NPC-A cards populated in all available slots."
+      ],
+      "pan_os": "11.2"
+    },
+    "vsys_max": {
+      "value": 225,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max)",
+      "notes": [
+        "**",
+        "*"
+      ],
+      "test_conditions": [
+        "The base system includes 25 virtual systems at no cost, and up to 200 additional licenses may be purchased. The maximum number of virtual systems supported is 225.",
+        "Results in this column were derived from an optimum combination of PA-7000-DPC-A and PA-7000-100G-NPC-A cards populated in all available slots."
+      ],
+      "pan_os": "11.2"
+    }
+  },
+  "hardware": {
+    "heat_btu_h": 10236,
+    "rack_units": 9,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 400.0,
+      "w": 482.6,
+      "d": 609.6
+    },
+    "weight_kg": 85.0,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 50
+    },
+    "interfaces": [
+      {
+        "type": "SFP/SFP+",
+        "count": 48
+      },
+      {
+        "type": "QSFP+/ QSFP28",
+        "count": 24
+      }
+    ],
+    "storage": "480 GB SSD, system drive RAID1 (2 x 240 GB)",
+    "mtbf": "Configuration dependent; contact your Palo Alto Networks representative for MTBF details.",
+    "power_supplies": "4/4",
+    "raw": {
+      "I/O": "SFP/SFP+ (48), QSFP+/ QSFP28 (24)",
+      "Management I/O": "SFP MGT (2), SFP HA1 (2), HSCI HA2/HA3 QSFP+/QSFP28 (2), RJ45 serial console (1), Micro USB serial console (1)",
+      "Storage Capacity": "480 GB SSD, system drive RAID1 (2 x 240 GB)",
+      "AC input voltage": "100–240 VAC (50–60 Hz)",
+      "Rated input current": "27-12A; 60A",
+      "AC power supply output": "2500 W @ 240 VAC 1200 W @ 120 VAC",
+      "DC input voltage": "-40 to -60 VDC",
+      "DC power output": "2500 W/power supply",
+      "Max current/power supply": "16 A @ 180 VAC In 75 A @ 37.5 VDC In",
+      "Power supplies (base/max)": "4/4",
+      "Max inrush current/power supply": "50 AAC/75 ADC peak",
+      "Mean time between failure (MTBF)": "Configuration dependent; contact your Palo Alto Networks representative for MTBF details.",
+      "Max BTU/hr": "10,236",
+      "Rack mount (dimensions)": "9U, 19\" standard rack (15.75\" H x 19\" W x 24\" D)",
+      "Weight (standalone device/as shipped)": "187.4 lbs. AC/185 lbs. DC",
+      "Safety": "cTUVus, CB",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A",
+      "Certifications": "NEBS Level 3",
+      "Environment": "Operating temperature – 32°F to 122°F, 0°C to 50°C; Nonoperating temperature – -4°F to 158°F, -20°C to 70°C"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Results in this column were derived from an optimum combination of PA-7000-DPC-A and PA-7000-100G-NPC-A cards populated in all available slots.",
+    "†": "Throughput is measured with App-ID and logging enabled, with appmix transactions.",
+    "‡": "Threat Prevention throughput measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, utilizing appmix transactions.",
+    "§": "IPsec VPN throughput is measured with 64 KB HTTP transactions, and logging enabled.",
+    "||": "Max concurrent sessions are measured utilizing HTTP transactions.",
+    "#": "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions.",
+    "**": "The base system includes 25 virtual systems at no cost, and up to 200 additional licenses may be purchased. The maximum number of virtual systems supported is 225."
+  },
+  "other": {},
+  "per_card": [
+    {
+      "card": "PA-7000-100G-NPC-A",
+      "specs": {
+        "fw_throughput_appmix_mbps": {
+          "value": 51500,
+          "raw": "51.5 Gbps",
+          "label": "Firewall throughput (appmix)",
+          "notes": [
+            "†"
+          ],
+          "test_conditions": [
+            "Throughput is measured with App-ID and logging enabled, with appmix transactions."
+          ],
+          "pan_os": "11.2"
+        },
+        "threat_prevention_throughput_mbps": {
+          "value": 26500,
+          "raw": "26.5 Gbps",
+          "label": "Threat Prevention throughput (appmix)",
+          "notes": [
+            "‡"
+          ],
+          "test_conditions": [
+            "Threat Prevention throughput measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, utilizing appmix transactions."
+          ],
+          "pan_os": "11.2"
+        },
+        "ipsec_throughput_mbps": {
+          "value": 26000,
+          "raw": "26 Gbps",
+          "label": "IPsec VPN throughput",
+          "notes": [
+            "§"
+          ],
+          "test_conditions": [
+            "IPsec VPN throughput is measured with 64 KB HTTP transactions, and logging enabled."
+          ],
+          "pan_os": "11.2"
+        },
+        "concurrent_sessions": {
+          "value": 32000000,
+          "raw": "32M",
+          "label": "Max concurrent sessions",
+          "notes": [
+            "||"
+          ],
+          "test_conditions": [
+            "Max concurrent sessions are measured utilizing HTTP transactions."
+          ],
+          "pan_os": "11.2"
+        },
+        "new_sessions_per_sec": {
+          "value": 560000,
+          "raw": "560,000",
+          "label": "New sessions per second",
+          "notes": [
+            "#"
+          ],
+          "test_conditions": [
+            "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions."
+          ],
+          "pan_os": "11.2"
+        },
+        "vsys_base": {
+          "value": null,
+          "raw": "–",
+          "label": "Virtual systems (base/max)",
+          "notes": [
+            "**"
+          ],
+          "test_conditions": [
+            "The base system includes 25 virtual systems at no cost, and up to 200 additional licenses may be purchased. The maximum number of virtual systems supported is 225."
+          ],
+          "pan_os": "11.2"
+        }
+      }
+    },
+    {
+      "card": "PA-7000-DPC-A",
+      "specs": {
+        "fw_throughput_appmix_mbps": {
+          "value": 68600,
+          "raw": "68.6 Gbps",
+          "label": "Firewall throughput (appmix)",
+          "notes": [
+            "†"
+          ],
+          "test_conditions": [
+            "Throughput is measured with App-ID and logging enabled, with appmix transactions."
+          ],
+          "pan_os": "11.2"
+        },
+        "threat_prevention_throughput_mbps": {
+          "value": 35300,
+          "raw": "35.3 Gbps",
+          "label": "Threat Prevention throughput (appmix)",
+          "notes": [
+            "‡"
+          ],
+          "test_conditions": [
+            "Threat Prevention throughput measured with App-ID, IPS, antivirus, antispyware, WildFire, file blocking, and logging enabled, utilizing appmix transactions."
+          ],
+          "pan_os": "11.2"
+        },
+        "ipsec_throughput_mbps": {
+          "value": 34000,
+          "raw": "34 Gbps",
+          "label": "IPsec VPN throughput",
+          "notes": [
+            "§"
+          ],
+          "test_conditions": [
+            "IPsec VPN throughput is measured with 64 KB HTTP transactions, and logging enabled."
+          ],
+          "pan_os": "11.2"
+        },
+        "concurrent_sessions": {
+          "value": 43000000,
+          "raw": "43M",
+          "label": "Max concurrent sessions",
+          "notes": [
+            "||"
+          ],
+          "test_conditions": [
+            "Max concurrent sessions are measured utilizing HTTP transactions."
+          ],
+          "pan_os": "11.2"
+        },
+        "new_sessions_per_sec": {
+          "value": 746000,
+          "raw": "746,000",
+          "label": "New sessions per second",
+          "notes": [
+            "#"
+          ],
+          "test_conditions": [
+            "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions."
+          ],
+          "pan_os": "11.2"
+        },
+        "vsys_base": {
+          "value": null,
+          "raw": "–",
+          "label": "Virtual systems (base/max)",
+          "notes": [
+            "**"
+          ],
+          "test_conditions": [
+            "The base system includes 25 virtual systems at no cost, and up to 200 additional licenses may be purchased. The maximum number of virtual systems supported is 225."
+          ],
+          "pan_os": "11.2"
+        }
+      }
+    }
+  ]
+}

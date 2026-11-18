@@ -1,0 +1,213 @@
+{
+  "model": "PA-5060",
+  "model_id": "PA-5060",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-5000 Series",
+  "form_factor": "appliance",
+  "legacy": true,
+  "source": {
+    "title": "PA-5000 Series Datasheet",
+    "url": "https://media.paloaltonetworks.com/documents/specsheet-pa-5000.pdf",
+    "page_url": null,
+    "spec_url": "https://media.paloaltonetworks.com/documents/specsheet-pa-5000.pdf#page=1",
+    "file": "specsheet-pa-5000.pdf",
+    "library_last_updated": null,
+    "sha256": "4f860d59428eac6759aa972f26269ebc69ac3d6c34075404a8e5a390b95ec13c"
+  },
+  "test_conditions": {
+    "pan_os": "5.0",
+    "note": "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+  },
+  "specs": {
+    "fw_throughput_appid_mbps": {
+      "value": 20000,
+      "raw": "20 Gbps",
+      "label": "Firewall throughput (App-ID enabled)",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 10000,
+      "raw": "10 Gbps",
+      "label": "Threat prevention throughput",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 4000,
+      "raw": "4 Gbps",
+      "label": "IPSec VPN throughput",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "concurrent_sessions": {
+      "value": 4000000,
+      "raw": "4,000,000",
+      "label": "Max sessions",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "new_sessions_per_sec": {
+      "value": 120000,
+      "raw": "120,000",
+      "label": "New sessions per second",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ipsec_tunnels": {
+      "value": 8000,
+      "raw": "8,000",
+      "label": "IPSec VPN tunnels/tunnel interfaces",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ssl_vpn_users": {
+      "value": 20000,
+      "raw": "20,000",
+      "label": "GlobalProtect (SSL VPN) concurrent users",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ssl_decrypt_sessions": {
+      "value": 90000,
+      "raw": "90,000",
+      "label": "SSL decrypt sessions",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ssl_inbound_certificates": {
+      "value": 1000,
+      "raw": "1,000",
+      "label": "SSL inbound certificates",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "virtual_routers": {
+      "value": 225,
+      "raw": "225",
+      "label": "Virtual routers",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "vsys_base": {
+      "value": 25,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max2)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "vsys_max": {
+      "value": 225,
+      "raw": "25/225",
+      "label": "Virtual systems (base/max2)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "security_zones": {
+      "value": 900,
+      "raw": "900",
+      "label": "Security zones",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "firewall_policies": {
+      "value": 40000,
+      "raw": "40,000",
+      "label": "Max. number of policies",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 330.0,
+    "power_max_w": 415.0,
+    "heat_btu_h": 1416,
+    "rack_units": 2,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 88.9,
+      "w": 444.5,
+      "d": 508.0
+    },
+    "weight_kg": 18.6,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 50
+    },
+    "interfaces": [
+      {
+        "type": "10/100/1000",
+        "count": 12
+      },
+      {
+        "type": "Gigabit SFP",
+        "count": 8
+      },
+      {
+        "type": "10 Gigabit SFP+",
+        "count": 4
+      }
+    ],
+    "storage": "Single or dual solid state disk drives; 120GB, 240GB SSD, RAID 1",
+    "mtbf": "6.5 Years",
+    "raw": {
+      "I/O": "(12) 10/100/1000, (8) Gigabit SFP, (4) 10 Gigabit SFP+",
+      "MANAGEMENT I/O": "(2) 10/100/1000 high availability, (1) 10/100/1000 out-of-band management, (1) RJ45 console port",
+      "STORAGE OPTIONS": "Single or dual solid state disk drives",
+      "STORAGE CAPACITY": "120GB, 240GB SSD, RAID 1",
+      "POWER SUPPLY (AVG/MAX POWER CONSUMPTION)": "Redundant 450W AC (330W/415W)",
+      "MAX BTU/HR": "1,416",
+      "INPUT VOLTAGE (INPUT FREQUENCY)": "100-240VAC (50-60Hz); -40 to -72 VDC",
+      "MAX CURRENT CONSUMPTION": "8A@100VAC, 14A@48VDC",
+      "MAX INRUSH CURRENT": "80A@230VAC; 40A@120VAC; 40A@48VDC",
+      "MEAN TIME BETWEEN FAILURE (MTBF)": "6.5 Years",
+      "RACK MOUNTABLE (DIMENSIONS)": "2U, 19” standard rack (3.5”H x 20”D x 17.5”W)",
+      "WEIGHT (STAND ALONE DEVICE/AS SHIPPED)": "41lbs/55lbs",
+      "SAFETY": "UL, CUL, CB",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A",
+      "CERTIFICATIONS": "NEBS Level 3, FIPS level 2, ICSA",
+      "ENVIRONMENT": "Operating temperature: 32° to 122° F, 0° to 50° C; Non-operating temperature: -4° to 158° F, -20° to 70° C"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "1": "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0.",
+    "2": "Adding virtual systems to the base quantity requires a separately purchased license."
+  },
+  "other": {}
+}

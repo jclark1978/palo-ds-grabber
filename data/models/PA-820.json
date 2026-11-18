@@ -1,0 +1,143 @@
+{
+  "model": "PA-820",
+  "model_id": "PA-820",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-800 Series",
+  "form_factor": "appliance",
+  "legacy": true,
+  "source": {
+    "title": "PA-800 Series Datasheet",
+    "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-800-series-datasheet",
+    "page_url": "https://www.paloaltonetworks.com/resources/datasheets/pa-800-series-datasheet",
+    "spec_url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-800-series-datasheet#page=4",
+    "file": "pa-800-series-datasheet.pdf",
+    "library_last_updated": "2023-07-14",
+    "sha256": "40edbc3c1eb1ae6a242cb03914ebf0fd0711551ae4ce4ef6d57cd0a650d6bd79"
+  },
+  "test_conditions": {
+    "pan_os": "11.0",
+    "note": "Results were measured on PAN-OS 11.0."
+  },
+  "specs": {
+    "fw_throughput_appmix_mbps": {
+      "value": 1500,
+      "raw": "1.6/1.5 Gbps",
+      "label": "Firewall throughput (HTTP/appmix)",
+      "notes": [
+        "*"
+      ],
+      "test_conditions": [
+        "Firewall throughput is measured with App-ID and logging enabled, using 64 KB HTTP/appmix transactions."
+      ],
+      "http_value": 1600,
+      "note": "Datasheet prints HTTP/appmix; value is the appmix number.",
+      "pan_os": "11.0"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 840,
+      "raw": "790/840 Mbps",
+      "label": "Threat Prevention throughput (HTTP/appmix)",
+      "notes": [
+        "†"
+      ],
+      "test_conditions": [
+        "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, DNS Security, file blocking, and logging enabled, utilizing 64 KB HTTP/appmix transactions."
+      ],
+      "http_value": 790,
+      "note": "Datasheet prints HTTP/appmix; value is the appmix number.",
+      "pan_os": "11.0"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 1400,
+      "raw": "1.4 Gbps",
+      "label": "IPsec VPN throughput",
+      "notes": [
+        "‡"
+      ],
+      "test_conditions": [
+        "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled."
+      ],
+      "pan_os": "11.0"
+    },
+    "concurrent_sessions": {
+      "value": 128000,
+      "raw": "128,000",
+      "label": "Max concurrent sessions",
+      "notes": [
+        "§"
+      ],
+      "test_conditions": [
+        "Max concurrent sessions are measured utilizing HTTP transactions."
+      ],
+      "pan_os": "11.0"
+    },
+    "new_sessions_per_sec": {
+      "value": 8100,
+      "raw": "8,100",
+      "label": "New sessions per second",
+      "notes": [
+        "||"
+      ],
+      "test_conditions": [
+        "New sessions per second is measured with application override utilizing 1 byte HTTP transactions. PA-800 Series ML-Powered NGFWs support a wide range of networking features that enable you to more easily integrate our security features into your existing network."
+      ],
+      "pan_os": "11.0"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 41.0,
+    "power_max_w": 120.0,
+    "heat_btu_h": 256,
+    "rack_units": 1,
+    "desktop": false,
+    "dimensions_mm": {
+      "h": 44.4,
+      "w": 435.0,
+      "d": 355.6
+    },
+    "weight_kg": 4.99,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 40
+    },
+    "interfaces": [
+      {
+        "type": "10/100/1000",
+        "count": 4
+      },
+      {
+        "type": "Gigabit SFP",
+        "count": 8
+      }
+    ],
+    "storage": "240 GB SSD",
+    "raw": {
+      "I/O": "10/100/1000 (4), Gigabit SFP (8)",
+      "Management I/O": "10/100/1000 out-of-band management port (1) 10/100/1000 high availability (2) RJ-45 console port (1) USB port (1) Micro USB console port (1)",
+      "Storage Capacity": "240 GB SSD",
+      "Power Supply": "Fixed AC 200 W power supply (1)",
+      "Power Consumption": "Maximum: 120 W; Average: 41 W",
+      "Max BTU/hr": "256",
+      "Input Voltage (Input Frequency)": "100–240 VAC (50–60 Hz)",
+      "Max Current Consumption": "1.0 A @ 100 VAC, 0.5 A @ 240 VAC",
+      "Max Inrush Current": "0.4 A @ 230 VAC, 0.96 A @ 120 VAC",
+      "Rack Mount (Dimensions)": "1U, 19” standard rack (1.75” H x 14” D x 17.125” W)",
+      "Weight (Standalone Device/As Shipped)": "11 lbs / 18 lbs",
+      "Safety": "cTUVus, CB",
+      "EMI": "FCC Class A, CE Class A, VCCI Class A",
+      "Certifications": "See paloaltonetworks.com/company/certifications.html",
+      "Environment": "Operating temperature: 32°F to 104°F, 0°C to 40°C Nonoperating temperature: -4°F to 158°F, -20°C to 70°C",
+      "Airflow": "Front to back"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "*": "Firewall throughput is measured with App-ID and logging enabled, using 64 KB HTTP/appmix transactions.",
+    "†": "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, DNS Security, file blocking, and logging enabled, utilizing 64 KB HTTP/appmix transactions.",
+    "‡": "IPsec VPN throughput is measured with 64 KB HTTP transactions and logging enabled.",
+    "§": "Max concurrent sessions are measured utilizing HTTP transactions.",
+    "||": "New sessions per second is measured with application override utilizing 1 byte HTTP transactions. PA-800 Series ML-Powered NGFWs support a wide range of networking features that enable you to more easily integrate our security features into your existing network."
+  },
+  "other": {}
+}
