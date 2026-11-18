@@ -5,6 +5,7 @@
   "family": "PA-Series",
   "series": "PA-7500",
   "form_factor": "appliance",
+  "legacy": false,
   "source": {
     "title": "PA-7500 Datasheet",
     "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7500",
@@ -132,6 +133,10 @@
       "w": 442.0,
       "d": 787.4
     },
+    "operating_temp_c": {
+      "min": 0,
+      "max": 40
+    },
     "interfaces": [
       {
         "type": "QSFP-DD",
@@ -175,81 +180,83 @@
     "**": "Adding virtual systems over base quantity requires a separately purchased license. NGFW Cluster A/A supports a maximum of 25 Virtual Systems."
   },
   "other": {},
-  "per_card": {
-    "card": "PA-7500-DPC-A",
-    "specs": {
-      "fw_throughput_appmix_mbps": {
-        "value": 310000,
-        "raw": "310 Gbps",
-        "label": "Firewall throughput (appmix)",
-        "notes": [
-          "†"
-        ],
-        "test_conditions": [
-          "Firewall throughput is measured with App-ID and logging enabled, utilizing appmix transactions."
-        ],
-        "pan_os": "11.1"
-      },
-      "threat_prevention_throughput_mbps": {
-        "value": 250000,
-        "raw": "250 Gbps",
-        "label": "Threat Prevention throughput (appmix)",
-        "notes": [
-          "‡"
-        ],
-        "test_conditions": [
-          "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, DNS Security, file blocking, and logging enabled, utilizing appmix transactions."
-        ],
-        "pan_os": "11.1"
-      },
-      "concurrent_sessions": {
-        "value": 73000000,
-        "raw": "73M",
-        "label": "Max concurrent sessions",
-        "notes": [
-          "§"
-        ],
-        "test_conditions": [
-          "Max concurrent sessions are measured utilizing HTTP transactions."
-        ],
-        "pan_os": "11.1"
-      },
-      "ipsec_throughput_mbps": {
-        "value": 67000,
-        "raw": "67 Gbps",
-        "label": "IPsec VPN throughput",
-        "notes": [
-          "||"
-        ],
-        "test_conditions": [
-          "IPsec VPN throughput is measured with 64KB HTTP transactions and logging enabled."
-        ],
-        "pan_os": "11.1"
-      },
-      "new_sessions_per_sec": {
-        "value": 1200000,
-        "raw": "1.2M",
-        "label": "New sessions per second",
-        "notes": [
-          "#"
-        ],
-        "test_conditions": [
-          "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions."
-        ],
-        "pan_os": "11.1"
-      },
-      "vsys_base": {
-        "value": null,
-        "raw": "—",
-        "label": "Virtual systems (base/max)",
-        "notes": [
-          "**"
-        ],
-        "test_conditions": [
-          "Adding virtual systems over base quantity requires a separately purchased license. NGFW Cluster A/A supports a maximum of 25 Virtual Systems."
-        ],
-        "pan_os": "11.1"
+  "per_card": [
+    {
+      "card": "PA-7500-DPC-A",
+      "specs": {
+        "fw_throughput_appmix_mbps": {
+          "value": 310000,
+          "raw": "310 Gbps",
+          "label": "Firewall throughput (appmix)",
+          "notes": [
+            "†"
+          ],
+          "test_conditions": [
+            "Firewall throughput is measured with App-ID and logging enabled, utilizing appmix transactions."
+          ],
+          "pan_os": "11.1"
+        },
+        "threat_prevention_throughput_mbps": {
+          "value": 250000,
+          "raw": "250 Gbps",
+          "label": "Threat Prevention throughput (appmix)",
+          "notes": [
+            "‡"
+          ],
+          "test_conditions": [
+            "Threat Prevention throughput is measured with App-ID, IPS, antivirus, antispyware, WildFire, DNS Security, file blocking, and logging enabled, utilizing appmix transactions."
+          ],
+          "pan_os": "11.1"
+        },
+        "concurrent_sessions": {
+          "value": 73000000,
+          "raw": "73M",
+          "label": "Max concurrent sessions",
+          "notes": [
+            "§"
+          ],
+          "test_conditions": [
+            "Max concurrent sessions are measured utilizing HTTP transactions."
+          ],
+          "pan_os": "11.1"
+        },
+        "ipsec_throughput_mbps": {
+          "value": 67000,
+          "raw": "67 Gbps",
+          "label": "IPsec VPN throughput",
+          "notes": [
+            "||"
+          ],
+          "test_conditions": [
+            "IPsec VPN throughput is measured with 64KB HTTP transactions and logging enabled."
+          ],
+          "pan_os": "11.1"
+        },
+        "new_sessions_per_sec": {
+          "value": 1200000,
+          "raw": "1.2M",
+          "label": "New sessions per second",
+          "notes": [
+            "#"
+          ],
+          "test_conditions": [
+            "New sessions per second is measured with application override, utilizing 1 byte HTTP transactions."
+          ],
+          "pan_os": "11.1"
+        },
+        "vsys_base": {
+          "value": null,
+          "raw": "—",
+          "label": "Virtual systems (base/max)",
+          "notes": [
+            "**"
+          ],
+          "test_conditions": [
+            "Adding virtual systems over base quantity requires a separately purchased license. NGFW Cluster A/A supports a maximum of 25 Virtual Systems."
+          ],
+          "pan_os": "11.1"
+        }
       }
     }
-  }
+  ]
 }

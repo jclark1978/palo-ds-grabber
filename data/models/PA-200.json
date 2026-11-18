@@ -1,0 +1,178 @@
+{
+  "model": "PA-200",
+  "model_id": "PA-200",
+  "vendor": "Palo Alto Networks",
+  "family": "PA-Series",
+  "series": "PA-200",
+  "form_factor": "appliance",
+  "legacy": true,
+  "source": {
+    "title": "PA-200 Datasheet",
+    "url": "https://media.paloaltonetworks.com/documents/specsheet-pa-200.pdf",
+    "page_url": null,
+    "spec_url": "https://media.paloaltonetworks.com/documents/specsheet-pa-200.pdf#page=1",
+    "file": "specsheet-pa-200.pdf",
+    "library_last_updated": null,
+    "sha256": "c8ff882f711553995c5c13737c63b3244c0655ce470c5f63290028d4d4774b82"
+  },
+  "test_conditions": {
+    "pan_os": "5.0",
+    "note": "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+  },
+  "specs": {
+    "fw_throughput_appid_mbps": {
+      "value": 100,
+      "raw": "100 Mbps",
+      "label": "Firewall throughput (App-ID enabled)",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "threat_prevention_throughput_mbps": {
+      "value": 50,
+      "raw": "50 Mbps",
+      "label": "Threat prevention throughput",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ipsec_throughput_mbps": {
+      "value": 50,
+      "raw": "50 Mbps",
+      "label": "IPSec VPN throughput",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "new_sessions_per_sec": {
+      "value": 1000,
+      "raw": "1,000",
+      "label": "New sessions per second",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "concurrent_sessions": {
+      "value": 64000,
+      "raw": "64,000",
+      "label": "Max sessions",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ipsec_tunnels": {
+      "value": 25,
+      "raw": "25",
+      "label": "IPSec VPN tunnels/tunnel interfaces",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ssl_vpn_users": {
+      "value": 25,
+      "raw": "25",
+      "label": "GlobalProtect (SSL VPN) concurrent users",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ssl_decrypt_sessions": {
+      "value": 1000,
+      "raw": "1,000",
+      "label": "SSL decrypt sessions",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "ssl_inbound_certificates": {
+      "value": 25,
+      "raw": "25",
+      "label": "SSL inbound certificates",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "virtual_routers": {
+      "value": 3,
+      "raw": "3",
+      "label": "Virtual routers",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "security_zones": {
+      "value": 10,
+      "raw": "10",
+      "label": "Security zones",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    },
+    "firewall_policies": {
+      "value": 250,
+      "raw": "250",
+      "label": "Max. number of policies",
+      "test_conditions": [
+        "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+      ],
+      "pan_os": "5.0"
+    }
+  },
+  "hardware": {
+    "power_avg_w": 20.0,
+    "power_max_w": 30.0,
+    "heat_btu_h": 102,
+    "rack_units": null,
+    "desktop": true,
+    "dimensions_mm": {
+      "h": 44.4,
+      "w": 234.9,
+      "d": 177.8
+    },
+    "weight_kg": 1.27,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 40
+    },
+    "interfaces": [
+      {
+        "type": "10/100/1000",
+        "count": 4
+      }
+    ],
+    "storage": "16GB SSD",
+    "mtbf": "13 years",
+    "raw": {
+      "I/O": "(4) 10/100/1000",
+      "MANAGEMENT I/O": "(1) 10/100 out-of-band management port, (1) RJ-45 console port",
+      "STORAGE CAPACITY": "16GB SSD",
+      "POWER SUPPLY (AVG/MAX POWER CONSUMPTION)": "40W (20W/30W)",
+      "MAX BTU/HR": "102 BTU",
+      "INPUT VOLTAGE (INPUT FREQUENCY)": "100-240VAC (50-60Hz)",
+      "MAX CURRENT CONSUMPTION": "3.3A@100VAC",
+      "MTBF": "13 years",
+      "DIMENSIONS (STAND ALONE DEVICE/AS SHIPPED)": "1.75”H x 7”D x 9.25”W",
+      "WEIGHT": "2.8lbs /5.0lbs Shipping",
+      "SAFETY": "UL, CUL, CB",
+      "EMI": "FCC Class B, CE Class B, VCCI Class B",
+      "CERTIFICATIONS": "ICSA",
+      "ENVIRONMENT": "Operating temperature: 32 to 104 F, 0 to 40 C; Non-operating temperature: -4 to 158 F, -20 to 70 C"
+    }
+  },
+  "vm": null,
+  "footnotes": {
+    "1": "Performance and capacities are measured under ideal testing conditions using PAN-OS 5.0."
+  },
+  "other": {}
+}

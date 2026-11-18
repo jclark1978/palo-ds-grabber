@@ -63,11 +63,16 @@ def pdf_wanted(name: str, cfg: dict) -> bool:
     return wanted(name, cfg)
 
 
-def discover(s: requests.Session, cfg: dict) -> tuple[list[str], list[dict]]:
-    """-> (datasheet page slugs, direct PDFs [{name, url}])."""
+def discover(s: requests.Session, cfg: dict) -> tuple[list[str], list[dict], set]:
+    """-> (datasheet page slugs, direct PDFs [{name, url}], legacy slugs).
+    A crawl page can be {url: ..., legacy: true}; a slug found only on legacy
+    pages (and not on any current product page) is marked legacy."""
     slugs: list[str] = []
     pdfs: dict[str, str] = {}
-    for url in cfg.get("crawl_pages", []):
+    current, on_legacy = set(), set()
+    for page in cfg.get("crawl_pages", []):
+        url = page["url"] if isinstance(page, dict) else page
+        is_legacy = isinstance(page, dict) and page.get("legacy", False)
         try:
             r = s.get(url, timeout=30)
         except requests.RequestException as e:
@@ -85,16 +90,22 @@ def discover(s: requests.Session, cfg: dict) -> tuple[list[str], list[dict]]:
             if pdf_wanted(Path(name).stem, cfg) and name not in pdfs:
                 pdfs[name] = pdf_url
                 direct.append(name)
-        print(f"  {url}: {len(set(found))} datasheet pages, {len(direct)} direct PDFs", flush=True)
+        print(f"  {url}: {len(set(found))} datasheet pages, {len(direct)} direct PDFs"
+              + (" (legacy)" if is_legacy else ""), flush=True)
+        (on_legacy if is_legacy else current).update(found)
         slugs += found
-    slugs += [x.lower() for x in cfg.get("extra_slugs", [])]
+    for e in cfg.get("extra_slugs", []):
+        slug = (e["slug"] if isinstance(e, dict) else e).lower()
+        slugs.append(slug)
+        if isinstance(e, dict) and e.get("legacy"):
+            on_legacy.add(slug)
     for e in cfg.get("extra_pdfs", []) or []:
         pdfs.setdefault(e["name"].lower(), e["url"])
     out = []
     for x in slugs:  # keep order, drop duplicates
         if x not in out:
             out.append(x)
-    return out, [{"name": n, "url": u} for n, u in pdfs.items()]
+    return out, [{"name": n, "url": u} for n, u in pdfs.items()], on_legacy - current
 
 
 def page_info(s: requests.Session, slug: str) -> dict:
@@ -150,7 +161,7 @@ def load_manifest(path: Path) -> dict:
     return {"generated": None, "source": BASE + "/resources/datasheets", "datasheets": {}}
 
 
-def sync(s, infos, out_dir: Path, manifest_path: Path, force=False, direct=None) -> dict:
+def sync(s, infos, out_dir: Path, manifest_path: Path, force=False, direct=None, legacy=None) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     archive = out_dir / "_archive"
     manifest = load_manifest(manifest_path)
@@ -160,6 +171,12 @@ def sync(s, infos, out_dir: Path, manifest_path: Path, force=False, direct=None)
     for info in infos:
         name = f"{info['slug']}.pdf"
         prev, dest = entries.get(name), out_dir / name
+        is_legacy = info["slug"] in (legacy or set())
+        if prev is not None:  # keep the flag current even when the PDF is unchanged
+            if is_legacy:
+                prev["legacy"] = True
+            else:
+                prev.pop("legacy", None)
         if info.get("error"):
             print(f"  FAILED  {name}: page {info['error']}", file=sys.stderr)
             stats["failed"].append(name)
@@ -198,6 +215,8 @@ def sync(s, infos, out_dir: Path, manifest_path: Path, force=False, direct=None)
             "sha256": digest,
             "bytes": len(data),
         }
+        if is_legacy:
+            entries[name]["legacy"] = True
         time.sleep(0.5)  # be polite
 
     for d in direct or []:
@@ -264,7 +283,7 @@ def main() -> int:
     cfg = load_sources(Path(a.sources))
     s = session()
     print("Discovering datasheet pages ...", flush=True)
-    slugs, direct = discover(s, cfg)
+    slugs, direct, legacy = discover(s, cfg)
     print(f"{len(slugs)} datasheet pages: {', '.join(slugs)}", flush=True)
     print(f"{len(direct)} direct PDFs: {', '.join(d['name'] for d in direct)}", flush=True)
     if not slugs:
@@ -275,11 +294,14 @@ def main() -> int:
     if a.list_only:
         for i in infos:
             print(f"  {i.get('last_updated') or '----------'}  {i['slug']:40} {i.get('title') or ''} {('ERROR ' + i['error']) if i.get('error') else ''}")
+        for i in infos:
+            if i["slug"] in legacy:
+                print(f"  (legacy)    {i['slug']}")
         for d in direct:
             print(f"  legacy PDF  {d['name']:40} {d['url']}")
         return 0
 
-    stats = sync(s, infos, Path(a.out), Path(a.manifest), force=a.force, direct=direct)
+    stats = sync(s, infos, Path(a.out), Path(a.manifest), force=a.force, direct=direct, legacy=legacy)
     print(f"Done: {len(stats['new'])} new, {len(stats['updated'])} updated, "
           f"{len(stats['unchanged'])} unchanged, {len(stats['failed'])} failed")
     ok = stats["new"] or stats["updated"] or stats["unchanged"]

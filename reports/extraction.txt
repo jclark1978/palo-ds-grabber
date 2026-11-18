@@ -1,27 +1,28 @@
-CHECK  k2-series.pdf: no performance table found
+SKIP   k2-series.pdf (excluded in labels.yaml)
 OK     pa-1400-series.pdf             perf_page=5  rows=6 mapped=100% models=2 PAN-OS=12.1
 OK     pa-1500-series.pdf             perf_page=6  rows=6 mapped=100% models=3 PAN-OS=12.2
-CHECK  pa-2000.pdf: no performance table found
-CHECK  pa-220-specsheet.pdf: no performance table found
-CHECK  pa-220r.pdf: no performance table found
-CHECK  pa-3200-series.pdf: no performance table found
+OK     pa-2000.pdf                    perf_page=1  rows=6 mapped=100% models=2 PAN-OS=6.0  legacy
+OK     pa-220-specsheet.pdf           perf_page=4  rows=5 mapped=100% models=1 PAN-OS=10.2  legacy
+OK     pa-220r.pdf                    perf_page=4  rows=5 mapped=100% models=1 PAN-OS=10.2  legacy
+OK     pa-3200-series.pdf             perf_page=5  rows=6 mapped=100% models=3 PAN-OS=11.1  legacy
 OK     pa-3400-series.pdf             perf_page=5  rows=6 mapped=100% models=4 PAN-OS=12.1
 OK     pa-3500-series.pdf             perf_page=6  rows=6 mapped=100% models=4 PAN-OS=12.2
 OK     pa-400-series.pdf              perf_page=6  rows=6 mapped=100% models=9 PAN-OS=12.1
-CHECK  pa-4000.pdf: no performance table found
+OK     pa-4000.pdf                    perf_page=1  rows=6 mapped=100% models=3 PAN-OS=6.0  legacy
 OK     pa-400r-series.pdf             perf_page=5  rows=7 mapped=100% models=5 PAN-OS=12.1
-CHECK  pa-500-ds.pdf: no performance table found
+CHECK  pa-500-ds.pdf                  perf_page=1  rows=5 mapped=100% models=1 PAN-OS=None  legacy
+         - PAN-OS version not found
 OK     pa-500-series.pdf              perf_page=7  rows=6 mapped=100% models=10 PAN-OS=12.2
 OK     pa-50r-series.pdf              perf_page=5  rows=6 mapped=100% models=4 PAN-OS=12.2
-CHECK  pa-5200-series-specsheet.pdf: no performance table found
+OK     pa-5200-series-specsheet.pdf   perf_page=5  rows=6 mapped=100% models=4 PAN-OS=11.2  legacy
 OK     pa-5400-series.pdf             perf_page=6  rows=6 mapped=100% models=5 PAN-OS=12.1
 OK     pa-5450-series.pdf             perf_page=6  rows=6 mapped=100% models=1 PAN-OS=12.1  cards=['Single PA-5400-DPC-A']
 OK     pa-5500-series.pdf             perf_page=6  rows=6 mapped=100% models=8 PAN-OS=12.2
-CHECK  pa-7000-series.pdf: no performance table found
+OK     pa-7000-series.pdf             perf_page=5  rows=6 mapped=100% models=2 PAN-OS=11.2  cards=['PA-7000-100G-NPC-A', 'PA-7000-DPC-A']  legacy
 OK     pa-7500.pdf                    perf_page=5  rows=6 mapped=100% models=1 PAN-OS=11.1  cards=['PA-7500-DPC-A']
-CHECK  pa-800-series-datasheet.pdf: no performance table found
+OK     pa-800-series-datasheet.pdf    perf_page=4  rows=5 mapped=100% models=2 PAN-OS=11.0  legacy
 SKIP   product-summary-specsheet.pdf (excluded in labels.yaml)
-CHECK  specsheet-pa-200.pdf: no performance table found
-CHECK  specsheet-pa-3000.pdf: no performance table found
-CHECK  specsheet-pa-5000.pdf: no performance table found
+OK     specsheet-pa-200.pdf           perf_page=1  rows=12 mapped=100% models=1 PAN-OS=5.0  legacy
+OK     specsheet-pa-3000.pdf          perf_page=1  rows=13 mapped=100% models=2 PAN-OS=5.0  legacy
+OK     specsheet-pa-5000.pdf          perf_page=1  rows=13 mapped=100% models=3 PAN-OS=5.0  legacy
 SKIP   vm-series-spec-sheet.pdf (excluded in labels.yaml)

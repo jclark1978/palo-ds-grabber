@@ -2,7 +2,8 @@
 #
 # crawl_pages: pages whose links to /resources/datasheets/<slug> are harvested,
 #   plus any direct datasheet PDF links (/content/dam/.../datasheets/...pdf).
-# extra_slugs: datasheet pages to always include (not linked from crawl_pages).
+# extra_slugs: datasheet pages to always include (not linked from crawl_pages);
+#   {slug: x, legacy: true} marks an end-of-sale model's datasheet.
 # extra_pdfs: direct PDF files to always include (old datasheets no page links).
 # include / exclude: regex filters on the slug (or PDF file name). A slug must
 #   match an include pattern and no exclude pattern.
@@ -12,13 +13,15 @@ crawl_pages:
   - https://www.paloaltonetworks.com/network-security/next-generation-firewall-hardware
   - https://www.paloaltonetworks.com/network-security/vm-series-virtual-next-generation-firewall
   # Legacy (end-of-sale) models: the Resources column links each model's datasheet.
-  - https://www.paloaltonetworks.com/services/support/end-of-life-announcements/hardware-end-of-life-dates
+  # Datasheets found only here (not on a current page above) are marked legacy.
+  - url: https://www.paloaltonetworks.com/services/support/end-of-life-announcements/hardware-end-of-life-dates
+    legacy: true
 
 extra_slugs:
   - product-summary-specsheet
   # Legacy models the EOL page links only to a hardware guide on docs.paloaltonetworks.com
-  - pa-220r                       # PA-220R (end of sale Jan 31, 2025)
-  - pa-800-series-datasheet       # PA-820, PA-850 (end of sale Aug 31, 2024)
+  - {slug: pa-220r, legacy: true}                   # PA-220R (end of sale Jan 31, 2025)
+  - {slug: pa-800-series-datasheet, legacy: true}   # PA-820, PA-850 (end of sale Aug 31, 2024)
 
 extra_pdfs:
   # Oldest models: the EOL page links only a product page, and the

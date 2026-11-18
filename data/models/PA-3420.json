@@ -5,6 +5,7 @@
   "family": "PA-Series",
   "series": "PA-3400 Series",
   "form_factor": "appliance",
+  "legacy": false,
   "source": {
     "title": "PA-3400 Series Datasheet",
     "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-3400-series",
@@ -107,9 +108,14 @@
   "hardware": {
     "power_avg_w": 133.0,
     "power_max_w": 190.0,
+    "heat_btu_h": 650,
     "rack_units": 1,
     "desktop": false,
     "weight_kg": 7.03,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 40
+    },
     "interfaces": [
       {
         "type": "1G/2.5G/5G/10G",
@@ -132,6 +138,7 @@
       "Storage Capacity": "480 GB SSD",
       "Trusted Platform Module (TPM)": "Integrated with TPM for secure boot, hardware root of trust, and securing system secrets.",
       "Power Supply (Avg/Max Power Consumption)": "Redundant 450-watt AC (133W/190W)",
+      "Max BTU/hr": "650",
       "Input Voltage Frequency": "AC: 100–240 VAC (50–60Hz)",
       "Max Current Consumption": "AC: 1.9 A @ 100 VAC, 0.8 A @ 240 VAC",
       "Mean Time Between Failure (MTBF)": "22 years",

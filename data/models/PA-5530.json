@@ -5,6 +5,7 @@
   "family": "PA-Series",
   "series": "PA-5500 Series",
   "form_factor": "appliance",
+  "legacy": false,
   "source": {
     "title": "PA-5500 Series Datasheet",
     "url": "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-5500-series",
@@ -113,6 +114,10 @@
       "d": 475.0
     },
     "weight_kg": 16.74,
+    "operating_temp_c": {
+      "min": 0,
+      "max": 50
+    },
     "interfaces": [
       {
         "type": "10GE Cu mGig",

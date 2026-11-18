@@ -40,12 +40,12 @@ import pymupdf
 SUPERSCRIPT_MAX = 6.0
 SAME_LINE_TOL = 2.0
 FOOTER_Y = 745.0
-CAPTION_RE = re.compile(r"^Table (\d+)\.\s*(.*)$")
+CAPTION_RE = re.compile(r"^Table (\d+)[.:]\s*(.*)$")
 MODEL_TOKEN = r"PA-\d{2,4}[A-Z]?(?:-[A-Z0-9]+)*"
 HEADER_CELL_RE = re.compile(rf"^(Single\s+)?{MODEL_TOKEN}|^PA-$|^PA-\d+[A-Z]?-$")
 # Marker symbols as printed: order matters (longest first).
 MARK_RE = re.compile(r"(\*\*|\*|††|†|‡|§|\|\||#)+$")
-FOOT_START_RE = re.compile(r"^(\*\*|\*|††|†|‡|§|\|\||#)\s*(.*)$")
+FOOT_START_RE = re.compile(r"^(\*\*|\*|††|†|‡|§|\|\||#|\d{1,2}(?=\s*[A-Z]))\s*(.*)$")
 MARK_ONLY = re.compile(r"^(\*\*|\*|††|†|‡|§|\|\||#)+$")
 NOTE_RE = re.compile(r"^Notes?:\s*(.*)$", re.I)
 
@@ -59,7 +59,7 @@ class Span:
             self.y = round(y0, 1)
             self.size = s["size"]
             self.text = re.sub(r"[\x00-\x1f\u00ad]", "", s["text"]).strip()
-            self.bold = "Bold" in s["font"] or bool(s["flags"] & 16)
+            self.bold = bool(re.search(r"Bold|Heavy|Black", s["font"])) or bool(s["flags"] & 16)
         for k, v in kw.items():
             setattr(self, k, v)
 
@@ -160,9 +160,10 @@ def assign_columns(groups: list[dict], centers: list[float]) -> list[tuple[int, 
 def find_tables(doc) -> list[dict]:
     """Return [{num, title, kind, parts:[(page_no, spans_in_region)]}]."""
     tables: dict[int, dict] = {}
+    last_num = 0
     for pno, page in enumerate(doc):
         spans = page_spans(page)
-        caps = [s for s in spans if CAPTION_RE.match(s.text) and s.size >= 8.5]
+        caps = [s for s in spans if CAPTION_RE.match(s.text) and s.size >= 7.5]
         caps.sort(key=lambda s: s.y)
         for i, cap in enumerate(caps):
             num, title = CAPTION_RE.match(cap.text).groups()
@@ -173,11 +174,17 @@ def find_tables(doc) -> list[dict]:
             stop = min((s.y for s in region if s.text.startswith("3000 Tannery Way")), default=None)
             if stop is not None and stop > cap.y:
                 region = [s for s in region if s.y < stop - 1]
+            continued = bool(re.search(r"\(continued\)\s*$", title, re.I))
+            if continued and num < last_num and num in tables:
+                num = last_num  # caption typo: e.g. PA-220R page 6 "Table 2 (continued)" is Table 3
+            last_num = max(last_num, num)
             base = re.sub(r"\s*\(continued\)\s*$", "", title, flags=re.I).strip()
             low = base.lower()
             kind = ("performance" if "performance" in low else
                     "hardware" if "hardware" in low else
                     "networking" if "networking" in low else "other")
+            if num in tables and continued:
+                base, kind = tables[num]["title"], tables[num]["kind"]
             t = tables.setdefault(num, {"num": num, "title": base, "kind": kind, "parts": []})
             t["parts"].append((pno + 1, region))
     return [tables[k] for k in sorted(tables)]
@@ -247,10 +254,25 @@ def parse_footnotes(lines: list[list[Span]]) -> dict[str, str]:
     return notes
 
 
-def extract_performance(parts) -> dict | None:
+def single_model_header(spans: list[Span], title: str):
+    """Single-model datasheets (PA-220, PA-220R) print no model header row:
+    the caption names the model and values sit in one right-hand column."""
+    m = re.search(rf"\b({MODEL_TOKEN})\b", title)
+    if not m or re.search(r"Series", title, re.I):
+        return None
+    vals = [s for s in spans if not s.sup and s.x0 > 250 and not MARK_ONLY.match(s.text)]
+    if len(vals) < 3:
+        return None
+    x0 = min(s.x0 for s in vals)
+    x1 = max(s.x1 for s in vals)
+    top = min(s.y for s in spans if not s.sup) - 2
+    return top, [{"x0": x0, "x1": x1, "cx": (x0 + x1) / 2, "text": m.group(1), "marks": []}]
+
+
+def extract_performance(parts, title: str = "") -> dict | None:
     """parts: [(page, spans)]; performance tables fit on one page."""
     page, spans = parts[0]
-    hdr = header_columns(spans)
+    hdr = header_columns(spans) or single_model_header(spans, title)
     if not hdr:
         return None
     hy, cols = hdr
@@ -345,7 +367,7 @@ def cols_size(cols, spans) -> float:
 # Hardware tables
 # --------------------------------------------------------------------------
 _MT = rf"{MODEL_TOKEN}[*†‡§#]*"
-SCOPE_RE = re.compile(rf"^((?:{_MT})(?:\s*(?:,|/|\bor\b|\band\b)\s*(?:{_MT}))*),?\s*(?:(?:\s*:\s*|\s+)(.*))?$")
+SCOPE_RE = re.compile(rf"^((?:{_MT})(?:\s*(?:,|/|\||\bor\b|\band\b)\s*(?:{_MT}))*),?\s*(?:(?:\s*:\s*|\s+-\s*|\s+)(.*))?$")
 
 
 def scope_models(text: str) -> tuple[list[str] | None, str]:
@@ -387,7 +409,7 @@ def extract_hardware(parts) -> dict:
             if "Ordering Information" in txt:
                 stopped = True
                 break
-            if txt.startswith("Strata by Palo Alto") or re.fullmatch(r"\d+", txt):
+            if txt.startswith("Strata by Palo Alto"):
                 continue
             if is_label(line):
                 if blocks and prev_label_y is not None and not blocks[-1]["body"] \
@@ -447,10 +469,31 @@ def hw_lines(body) -> list[str]:
         text = line_text(line)
         if out and prev_y is not None and line[0].y - prev_y < 10.0 and not scope_models(text)[0]:
             out[-1] += " " + text
-        else:
+        elif not out or out[-1] != text:
             out.append(text)
         prev_y = line[0].y
     return out
+
+
+def transposed_cells(spans: list[Span], vcols: list[dict]) -> dict[str, str]:
+    """Cells of one grid row whose columns are systems (PA-7000). Values are
+    left-aligned at each column's start; a cell with empty columns to its
+    right was printed once across them (merged), so it fills those too.
+    Spans that overlap in x (a cell's wrapped lines) form one cell."""
+    # column boundaries: midway between one header's end and the next one's start
+    bounds = [(a["x1"] + b["x0"]) / 2 for a, b in zip(vcols, vcols[1:])]
+    by_col: dict[int, list[Span]] = {}
+    for sp in spans:
+        i = sum(sp.x0 >= x for x in bounds)
+        by_col.setdefault(i, []).append(sp)
+    cells: dict[str, str] = {}
+    filled = sorted(by_col)
+    for n, i in enumerate(filled):
+        text = line_text(sorted(by_col[i], key=lambda s: (round(s.y), s.x0)))
+        end = filled[n + 1] if n + 1 < len(filled) else len(vcols)
+        for t in range(i, end):
+            cells[vcols[t]["text"]] = text
+    return cells
 
 
 def hw_subtable(body, vcols, body_size) -> dict:
@@ -467,18 +510,26 @@ def hw_subtable(body, vcols, body_size) -> dict:
             groups[-1].append(line)
         else:
             groups.append([line])
+    transposed = sum(bool(re.search(MODEL_TOKEN, c["text"])) for c in vcols) >= 2
+    centers = [c["cx"] for c in vcols]
     rows = []
     for g in groups:
         left, cells = [], {}
         for line in g:
             left += [s for s in line if s.x0 < 120]
             rest = [s for s in line if s.x0 >= 120]
+            if transposed:
+                continue  # handled per row below
             for grp in merge_groups(rest):
                 c = min(vcols, key=lambda c: abs(c["cx"] - grp["cx"]))
                 cells[c["text"]] = (cells.get(c["text"], "") + " " + grp["text"]).strip()
+        if transposed:
+            cells = transposed_cells([sp for line in g for sp in line if sp.x0 >= 120], vcols)
         model = line_text(sorted(left, key=lambda s: (s.y, s.x0)))
         rows.append({"model": model, "cells": cells})
     out = {"columns": [c["text"] for c in vcols], "rows": rows}
+    if transposed:
+        out["transposed"] = True  # rows are attributes, columns are systems
     if notes:
         out["notes"] = notes
     return out
@@ -523,6 +574,87 @@ def extract_summary(doc) -> dict:
     return out
 
 
+
+
+# --------------------------------------------------------------------------
+# Legacy specsheets (2013-2018: PA-200, PA-500, PA-2000/3000/4000/5000)
+# --------------------------------------------------------------------------
+# No table captions. The performance table starts at a "Performance and
+# Capacities" heading whose line also holds the model columns; footnotes
+# ("1 Performance and capacities are measured ... using PAN-OS 5.0") follow.
+# Hardware rows are bold labels from a known vocabulary, each with plain
+# (often bulleted) value lines below it, in one or two page columns.
+JUNK_RE = re.compile(r"Great America Parkway|Tannery Way|Olcott Street|Santa Clara, CA|^(Main|Sales|Support):|"
+                     r"^\+1\.|^www\.paloaltonetworks|©|trademark|marks mentioned|-ds-\d{6}|PAN_SS_", re.I)
+LEGACY_PERF_RE = re.compile(r"^Performance and Capacities\b", re.I)
+HW_LABEL_RE = re.compile(
+    r"^(I/O|1/O|Management I/O|Storage (Capacity|Options)|Power Supply.*|Max BTU.*|Input Voltage.*|"
+    r"Max(imum)? (Current|Inrush).*|Mean Time.*|MTBF|Rack Mount.*|Dimensions.*|Weight.*|Safety|EMI|"
+    r"Certifications?|Environment|Airflow)$", re.I)
+
+
+def legacy_performance(doc) -> dict | None:
+    for pno, page in enumerate(doc):
+        spans = page_spans(page)
+        title = next((s for s in spans if LEGACY_PERF_RE.match(s.text) and s.bold), None)
+        if not title:
+            continue
+        # region: the table's page column, from the heading down to the end of its footnotes
+        below = [s for s in spans if s.y >= title.y - 3 and s.x0 >= title.x0 - 5 and s is not title
+                 and not (s.sup and abs(s.y - title.y) < 4 and s.x0 < title.x1 + 8)]
+        region, last_y = [], title.y
+        for line in group_lines(below):
+            txt = line_text(line)
+            if line[0].y - last_y > 32 or txt.startswith(("For a complete", "To view", "To learn")):
+                break
+            region += line
+            last_y = line[0].y
+        # footnotes: small text in the same column shortly below the table
+        region += [s for s in below if last_y < s.y <= last_y + 80 and s.size <= 6.5 and s not in region]
+        perf = extract_performance([(pno + 1, region)])
+        if perf:
+            perf["title"] = title.text
+            perf["legacy_layout"] = True
+            return perf
+    return None
+
+
+def legacy_hardware(doc) -> dict | None:
+    rows, pages = [], set()
+    for pno, page in enumerate(doc):
+        spans = page_spans(page)
+        labels = [s for s in spans if s.bold and HW_LABEL_RE.match(s.text.strip())]
+        if len(labels) < 4:
+            continue
+        pages.add(pno + 1)
+        spans = [s for s in spans if not JUNK_RE.search(s.text)]
+        is_model = lambda s: bool(re.match(rf"^{MODEL_TOKEN}", s.text))
+        bold = [s for s in spans if s.bold and not is_model(s)]  # bold model names start value lines
+        cols = sorted({round(l.x0) for l in labels})
+        for lab in sorted(labels, key=lambda s: (round(s.x0), s.y)):
+            nxt_col = min((c for c in cols if c > lab.x0 + 20), default=10_000)
+            # value lines: below the label, in its column, until the next bold line in that column
+            stop = min((b.y for b in bold if b.y > lab.y + 2 and lab.x0 - 15 <= b.x0 < nxt_col - 15), default=FOOTER_Y)
+            vals = [s for s in spans if (not s.bold or is_model(s)) and lab.y + 2 < s.y < stop - 1
+                    and lab.x0 - 15 <= s.x0 < nxt_col - 15]
+            lines = []
+            for line in group_lines(vals):
+                text = line_text(line)
+                bullet = bool(re.match(r"^[•·]", text))
+                text = re.sub(r"^[•·]\s*", "", text).strip()
+                if not text:
+                    continue
+                if lines and not bullet and line[0].x0 > lab.x0 + 3:
+                    lines[-1] += " " + text  # indented continuation of a bullet
+                else:
+                    lines.append(text)
+            rows.append({"label": " ".join(lab.text.split()), "page": pno + 1, "lines": lines})
+        break  # hardware sits on one page in these specsheets
+    if not rows:
+        return None
+    return {"pages": sorted(pages), "rows": rows, "legacy_layout": True}
+
+
 # --------------------------------------------------------------------------
 def extract(pdf_path: str | Path) -> dict:
     doc = pymupdf.open(str(pdf_path))
@@ -531,12 +663,16 @@ def extract(pdf_path: str | Path) -> dict:
         res["tables"].append({"num": t["num"], "title": t["title"], "kind": t["kind"],
                               "pages": [p for p, _ in t["parts"]]})
         if t["kind"] == "performance" and res["performance"] is None:
-            res["performance"] = extract_performance(t["parts"])
+            res["performance"] = extract_performance(t["parts"], t["title"])
             if res["performance"]:
                 res["performance"]["title"] = t["title"]
         elif t["kind"] == "hardware" and res["hardware"] is None:
             res["hardware"] = extract_hardware(t["parts"])
             res["hardware"]["title"] = t["title"]
+    if res["performance"] is None and not res["tables"]:
+        res["performance"] = legacy_performance(doc)
+        if res["performance"]:
+            res["hardware"] = legacy_hardware(doc)
     return res
 
 
